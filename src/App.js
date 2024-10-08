@@ -104,3 +104,33 @@ const completedTasks = tasks.filter((task) => task.completed).length;
     </div>
   );
 }
+const EditableTaskText = ({ task, onEdit }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newText, setNewText] = useState(task.text);
+
+  const saveEdit = () => {
+    onEdit(task.id, newText);
+    setIsEditing(false);
+  };
+
+  return (
+    <div>
+      {isEditing ? (
+        <input
+          type="text"
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+        />
+      ) : (
+        <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
+          {task.text}
+        </span>
+      )}
+      <button onClick={() => setIsEditing(!isEditing)}>
+        {isEditing ? "Save" : "Edit"}
+      </button>
+    </div>
+  );
+};
+
+export default App;
