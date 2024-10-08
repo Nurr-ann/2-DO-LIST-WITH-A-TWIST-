@@ -44,3 +44,10 @@ const editTaskText = (id, newText) => {
       )
     );
   };
+const changePriority = (id, newPriority) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, priority: newPriority } : task
+      )
+    );
+  };
