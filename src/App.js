@@ -19,3 +19,14 @@ function App() {
 useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+ const addTask = () => {
+    if (newTaskText.trim() === "") return; 
+    const newTask = {
+      id: Date.now(), 
+      text: newTaskText,
+      completed: false,
+      priority: priority,
+    };
+    setTasks([...tasks, newTask]); 
+    setNewTaskText("");
+  };
