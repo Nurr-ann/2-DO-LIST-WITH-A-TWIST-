@@ -37,3 +37,10 @@ onst toggleComplete = (id) => {
       )
     );
   };
+const editTaskText = (id, newText) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
