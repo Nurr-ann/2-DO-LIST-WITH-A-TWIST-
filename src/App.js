@@ -30,3 +30,10 @@ useEffect(() => {
     setTasks([...tasks, newTask]); 
     setNewTaskText("");
   };
+onst toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
