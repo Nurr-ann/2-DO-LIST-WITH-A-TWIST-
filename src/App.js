@@ -8,8 +8,7 @@ import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } 
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
 // To-Do List component
-function TodoList() {
-  const [tasks, setTasks] = useState([]);
+function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
 
   const addTask = () => {
@@ -74,7 +73,7 @@ function TodoList() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>COM·DO LIST</h1>
+        <h1>HELLO, let's create your to-do list together</h1>
       </header>
 
       <div className="task-progress-section">
@@ -147,17 +146,38 @@ function TodoList() {
           <FiPlusCircle size={40} />
         </button>
       </div>
+    </div>
+  );
+}
 
-      <div className="menu-section">
-        <button className="menu-btn">
-          <FiMenu size={24} />
-        </button>
+// Completed Tasks component
+function CompletedTasks({ tasks }) {
+  const completedTasks = tasks.filter((task) => task.isCompleted);
+
+  return (
+    <div className="app-container">
+      <header className="app-header">
+        <h1>Completed Tasks</h1>
+      </header>
+      <div className="completed-tasks-section">
+        {completedTasks.length > 0 ? (
+          <ul className="completed-tasks-list">
+            {completedTasks.map((task) => (
+              <li key={task.id}>{task.text}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No tasks completed yet.</p>
+        )}
+        <Link to="/">Go back to To-Do List</Link>
       </div>
     </div>
   );
 }
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
   return (
     <Router>
       <div className="app">
@@ -172,9 +192,9 @@ function App() {
 
         {/* Routes for Navigation */}
         <Routes>
-          <Route path="/" element={<TodoList />} />
+          <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
-          <Route path="/completed" element={<CompletedTasks />} />
+          <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
     </Router>
