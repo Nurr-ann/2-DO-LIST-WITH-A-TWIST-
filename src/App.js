@@ -88,9 +88,13 @@ function App() {
               {task.text}
             </span>
             <button className="priority-btn" onClick={() => changePriority(task.id)}>
-              {task.priority === 'low' ? '⬇️' : '⬆️'}
+              <span role="img" aria-label={task.priority === 'low' ? 'low priority' : 'high priority'}>
+                {task.priority === 'low' ? '⬇️' : '⬆️'}
+              </span>
             </button>
-            <button className="delete-btn" onClick={() => deleteTask(task.id)}>🗑️</button>
+            <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+              <span role="img" aria-label="delete task">🗑️</span>
+            </button>
           </div>
         ))}
       </div>
