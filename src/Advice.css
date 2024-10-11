@@ -1,28 +1,68 @@
-/* Advice Page Styling */
-.advice-page {
-  padding: 20px;
-  text-align: center;
+/* advice.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
+.advice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.advice-header {
+  margin-bottom: 30px;
+}
+
+.advice-header h1 {
+  font-size: 28px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.advice-header p {
+  font-size: 18px;
+  color: #666;
 }
 
 .advice-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
 .advice-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.advice-item p {
-  font-size: 1.2rem;
+.advice-icon {
+  margin-right: 20px;
+  color: #4caf50;
+}
+
+.advice-content h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.advice-content p {
+  font-size: 16px;
   color: #555;
+}
+
+.advice-item:hover {
+  background-color: #e0f7fa;
+  transition: background-color 0.3s ease;
 }

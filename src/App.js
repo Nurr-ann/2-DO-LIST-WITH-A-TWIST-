@@ -1,125 +1,110 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import Advice from './Advice'; // Import Advice page
-import './App.css'; // Import styles
+// File: App.js
+import React, { useState } from 'react';
+import './App.css';
+import { FiPlusCircle, FiMenu, FiCheckCircle } from 'react-icons/fi';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTaskText, setNewTaskText] = useState('');
-  const [priority, setPriority] = useState('low');
-
-  useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-    if (savedTasks) {
-      setTasks(savedTasks);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
+  const [newTask, setNewTask] = useState('');
 
   const addTask = () => {
-    if (newTaskText.trim() === '') return;
-    const newTask = {
+    if (newTask.trim() === '') return;
+    const task = {
       id: Date.now(),
-      text: newTaskText,
-      completed: false,
-      priority: priority,
+      text: newTask,
+      isCompleted: false,
+      progress: 0, // A progress bar for each task
     };
-    setTasks([...tasks, newTask]);
-    setNewTaskText('');
+    setTasks([...tasks, task]);
+    setNewTask('');
   };
 
-  const toggleComplete = (id) => {
+  const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
       )
     );
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  const changePriority = (id) => {
+  const handleProgressChange = (taskId, value) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, priority: task.priority === 'low' ? 'high' : 'low' } : task
+        task.id === taskId ? { ...task, progress: value } : task
       )
     );
   };
-
-  const completedTasks = tasks.filter((task) => task.completed).length;
-  const progress = tasks.length > 0 ? (completedTasks / tasks.length) * 100 : 0;
 
   return (
-    <div className="App">
-      {/* Navigation Links */}
-      <nav>
-        <Link className="nav-link" to="/">Home</Link>
-        <Link className="nav-link" to="/advice">Advice</Link>
-      </nav>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>COM·DO LIST</h1>
+      </header>
 
-      <Routes>
-        {/* Home Route */}
-        <Route
-          path="/"
-          element={
-            <div>
-              <h1>Com-Do List</h1>
-              <div className="new-task">
+      <div className="task-progress-section">
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <div key={task.id} className="task-item">
+              <div className="task-info">
+                <div className="task-header">
+                  <AiOutlineClockCircle size={22} className="task-icon" />
+                  <span className="task-title">{task.text}</span>
+                </div>
+                <div className="progress-bar">
+                  <div
+                    className="progress"
+                    style={{ width: `${task.progress}%` }}
+                  ></div>
+                </div>
+              </div>
+              <div className="task-controls">
+                <button
+                  className={`complete-btn ${
+                    task.isCompleted ? 'completed' : ''
+                  }`}
+                  onClick={() => toggleComplete(task.id)}
+                >
+                  <FiCheckCircle size={24} />
+                </button>
                 <input
-                  type="text"
-                  value={newTaskText}
-                  onChange={(e) => setNewTaskText(e.target.value)}
-                  placeholder="New Task"
+                  type="range"
+                  className="progress-input"
+                  value={task.progress}
+                  onChange={(e) =>
+                    handleProgressChange(task.id, e.target.value)
+                  }
+                  min="0"
+                  max="100"
                 />
-                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                  <option value="low">Low Priority</option>
-                  <option value="high">High Priority</option>
-                </select>
-                <button className="btn-add-task" onClick={addTask}>Add Task</button>
               </div>
-
-              <div className="task-list">
-                {tasks.map((task) => (
-                  <div key={task.id} className={`task ${task.priority}`}>
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      onChange={() => toggleComplete(task.id)}
-                    />
-                    <span className={`task-text ${task.completed ? 'completed' : ''}`}>
-                      {task.text}
-                    </span>
-                    <button className="priority-btn" onClick={() => changePriority(task.id)}>
-                      <span role="img" aria-label={task.priority === 'low' ? 'low priority' : 'high priority'}>
-                        {task.priority === 'low' ? '⬇️' : '⬆️'}
-                      </span>
-                    </button>
-                    <button className="delete-btn" onClick={() => deleteTask(task.id)}>
-                      <span role="img" aria-label="delete task">🗑️</span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <div className="progress-bar-container">
-                <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-              </div>
-              <p className="progress-text">Progress: {Math.round(progress)}%</p>
             </div>
-          }
-        />
+          ))
+        ) : (
+          <div className="no-tasks">Add a task to get started</div>
+        )}
+      </div>
 
-        {/* Advice Route */}
-        <Route path="/advice" element={<Advice />} />
-      </Routes>
+      <div className="add-task-section">
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Add Task"
+          className="task-input"
+        />
+        <button onClick={addTask} className="add-task-btn">
+          <FiPlusCircle size={40} />
+        </button>
+      </div>
+
+      <div className="menu-section">
+        <button className="menu-btn">
+          <FiMenu size={24} />
+        </button>
+      </div>
     </div>
   );
 }
 
 export default App;
-
