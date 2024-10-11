@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Advice from './Advice'; // Import Advice page
 import './App.css'; // Import styles
 
@@ -62,60 +62,64 @@ function App() {
         <Link className="nav-link" to="/advice">Advice</Link>
       </nav>
 
-      <Switch>
+      <Routes>
         {/* Home Route */}
-        <Route exact path="/">
-          <div>
-            <h1>Com-Do List</h1>
-            <div className="new-task">
-              <input
-                type="text"
-                value={newTaskText}
-                onChange={(e) => setNewTaskText(e.target.value)}
-                placeholder="New Task"
-              />
-              <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                <option value="low">Low Priority</option>
-                <option value="high">High Priority</option>
-              </select>
-              <button className="btn-add-task" onClick={addTask}>Add Task</button>
-            </div>
+        <Route
+          path="/"
+          element={
+            <div>
+              <h1>Com-Do List</h1>
+              <div className="new-task">
+                <input
+                  type="text"
+                  value={newTaskText}
+                  onChange={(e) => setNewTaskText(e.target.value)}
+                  placeholder="New Task"
+                />
+                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                  <option value="low">Low Priority</option>
+                  <option value="high">High Priority</option>
+                </select>
+                <button className="btn-add-task" onClick={addTask}>Add Task</button>
+              </div>
 
-            <div className="task-list">
-              {tasks.map((task) => (
-                <div key={task.id} className={`task ${task.priority}`}>
-                  <input
-                    type="checkbox"
-                    checked={task.completed}
-                    onChange={() => toggleComplete(task.id)}
-                  />
-                  <span className={`task-text ${task.completed ? 'completed' : ''}`}>
-                    {task.text}
-                  </span>
-                  <button className="priority-btn" onClick={() => changePriority(task.id)}>
-                    <span role="img" aria-label={task.priority === 'low' ? 'low priority' : 'high priority'}>
-                      {task.priority === 'low' ? '⬇️' : '⬆️'}
+              <div className="task-list">
+                {tasks.map((task) => (
+                  <div key={task.id} className={`task ${task.priority}`}>
+                    <input
+                      type="checkbox"
+                      checked={task.completed}
+                      onChange={() => toggleComplete(task.id)}
+                    />
+                    <span className={`task-text ${task.completed ? 'completed' : ''}`}>
+                      {task.text}
                     </span>
-                  </button>
-                  <button className="delete-btn" onClick={() => deleteTask(task.id)}>
-                    <span role="img" aria-label="delete task">🗑️</span>
-                  </button>
-                </div>
-              ))}
-            </div>
+                    <button className="priority-btn" onClick={() => changePriority(task.id)}>
+                      <span role="img" aria-label={task.priority === 'low' ? 'low priority' : 'high priority'}>
+                        {task.priority === 'low' ? '⬇️' : '⬆️'}
+                      </span>
+                    </button>
+                    <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+                      <span role="img" aria-label="delete task">🗑️</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
 
-            <div className="progress-bar-container">
-              <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+              <div className="progress-bar-container">
+                <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+              </div>
+              <p className="progress-text">Progress: {Math.round(progress)}%</p>
             </div>
-            <p className="progress-text">Progress: {Math.round(progress)}%</p>
-          </div>
-        </Route>
+          }
+        />
 
         {/* Advice Route */}
-        <Route path="/advice" component={Advice} />
-      </Switch>
+        <Route path="/advice" element={<Advice />} />
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
