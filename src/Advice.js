@@ -1,6 +1,6 @@
 // File: Advice.js
 import React from 'react';
-import './advice.css';
+import './Advice.css';
 import { FiCheckSquare, FiArrowRightCircle, FiTarget } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
