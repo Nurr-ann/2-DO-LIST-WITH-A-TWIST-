@@ -1,25 +1,16 @@
 /* App.css */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f7f8fa;
+  background-color: #e0f7fa; /* Baby blue background */
+  margin: 0;
+  padding: 0;
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
-  height: 100vh;
+  padding: 20px;
+  text-align: center;
 }
 
 .app-header {
@@ -27,13 +18,8 @@ body {
 }
 
 .app-header h1 {
-  font-size: 26px;
+  font-size: 28px;
   color: #333;
-  text-align: center;
-}
-
-.task-progress-section {
-  width: 100%;
 }
 
 .task-item {
@@ -47,26 +33,20 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.priority-low {
+  border-left: 5px solid green;
+}
+
+.priority-medium {
+  border-left: 5px solid orange;
+}
+
+.priority-high {
+  border-left: 5px solid red;
+}
+
 .task-info {
   flex: 1;
-  margin-right: 10px;
-}
-
-.task-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.task-title {
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 10px;
-  color: #333;
-}
-
-.task-icon {
-  color: #888;
 }
 
 .progress-bar {
@@ -88,43 +68,20 @@ body {
 .task-controls {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 10px;
-}
-
-.complete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #999;
-}
-
-.complete-btn.completed {
-  color: #4caf50;
-}
-
-.progress-input {
-  width: 100px;
-  margin-left: 10px;
 }
 
 .add-task-section {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 20px;
-  width: 100%;
 }
 
-.task-input {
+.add-task-section input {
   flex: 1;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 50px;
-  outline: none;
-  font-size: 16px;
-  margin-right: 10px;
-  color: #333;
+  border-radius: 25px;
 }
 
 .add-task-btn {
@@ -135,19 +92,11 @@ body {
 }
 
 .menu-section {
-  margin-top: 30px;
-  text-align: center;
+  margin-top: 20px;
 }
 
 .menu-btn {
   background: none;
   border: none;
   cursor: pointer;
-  color: #888;
-}
-
-.no-ttasks {
-  text-align: center;
-  font-size: 18px;
-  color: #999;
 }
