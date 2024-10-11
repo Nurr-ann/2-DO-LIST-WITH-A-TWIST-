@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'; // Make sure this is imported
 import { Link } from 'react-router-dom';
+import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -42,10 +42,10 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const changePriority = (id, newPriority) => {
+  const changePriority = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, priority: newPriority } : task
+        task.id === id ? { ...task, priority: task.priority === 'low' ? 'high' : 'low' } : task
       )
     );
   };
@@ -62,7 +62,6 @@ function App() {
 
       <h1>Com-Do List</h1>
 
-      {/* Add New Task */}
       <div className="new-task">
         <input
           type="text"
@@ -77,7 +76,6 @@ function App() {
         <button className="btn-add-task" onClick={addTask}>Add Task</button>
       </div>
 
-      {/* Task List */}
       <div className="task-list">
         {tasks.map((task) => (
           <div key={task.id} className={`task ${task.priority}`}>
@@ -89,22 +87,14 @@ function App() {
             <span className={`task-text ${task.completed ? 'completed' : ''}`}>
               {task.text}
             </span>
-            <button
-              className="priority-btn"
-              onClick={() =>
-                changePriority(task.id, task.priority === 'low' ? 'high' : 'low')
-              }
-            >
+            <button className="priority-btn" onClick={() => changePriority(task.id)}>
               {task.priority === 'low' ? '⬇️' : '⬆️'}
             </button>
-            <button className="delete-btn" onClick={() => deleteTask(task.id)}>
-              🗑️
-            </button>
+            <button className="delete-btn" onClick={() => deleteTask(task.id)}>🗑️</button>
           </div>
         ))}
       </div>
 
-      {/* Progress Bar */}
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${progress}%` }}></div>
       </div>
@@ -115,6 +105,3 @@ function App() {
 
 export default App;
 
-}
-
-export default App;
