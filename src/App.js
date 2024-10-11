@@ -1,8 +1,8 @@
 // File: App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Advice from './Advice'; // Importing the Advice component
-import CompletedTasks from './CompletedTasks'; // A new page for completed tasks
+import Advice from './Advice';
+import CompletedTasks from './CompletedTasks'; // Importing the CompletedTasks component
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -16,7 +16,7 @@ function TodoList({ tasks, setTasks }) {
     const task = {
       id: Date.now(),
       text: newTask,
-      priority: 'low', // Adding priority for each task
+      priority: 'low',
       isCompleted: false,
       progress: 0,
     };
@@ -150,31 +150,6 @@ function TodoList({ tasks, setTasks }) {
   );
 }
 
-// Completed Tasks component
-function CompletedTasks({ tasks }) {
-  const completedTasks = tasks.filter((task) => task.isCompleted);
-
-  return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1>Completed Tasks</h1>
-      </header>
-      <div className="completed-tasks-section">
-        {completedTasks.length > 0 ? (
-          <ul className="completed-tasks-list">
-            {completedTasks.map((task) => (
-              <li key={task.id}>{task.text}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No tasks completed yet.</p>
-        )}
-        <Link to="/">Go back to To-Do List</Link>
-      </div>
-    </div>
-  );
-}
-
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -202,3 +177,4 @@ function App() {
 }
 
 export default App;
+
