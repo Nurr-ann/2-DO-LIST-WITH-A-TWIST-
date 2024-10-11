@@ -1,6 +1,6 @@
 // File: App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice'; // Importing the Advice component
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle } from 'react-icons/fi';
@@ -123,14 +123,13 @@ function App() {
         </nav>
 
         {/* Routes for Navigation */}
-        <Switch>
-          <Route path="/" exact component={TodoList} />
-          <Route path="/advice" component={Advice} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<TodoList />} />
+          <Route path="/advice" element={<Advice />} />
+        </Routes>
       </div>
     </Router>
   );
 }
 
 export default App;
-
