@@ -1,10 +1,13 @@
 // File: App.js
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Advice from './Advice'; // Importing the Advice component
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
-function App() {
+// To-Do List component (embedded inside App.js for simplicity)
+function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
 
@@ -14,7 +17,7 @@ function App() {
       id: Date.now(),
       text: newTask,
       isCompleted: false,
-      progress: 0, // A progress bar for each task
+      progress: 0,
     };
     setTasks([...tasks, task]);
     setNewTask('');
@@ -107,4 +110,27 @@ function App() {
   );
 }
 
+function App() {
+  return (
+    <Router>
+      <div className="app">
+        {/* Navigation */}
+        <nav className="app-nav">
+          <ul>
+            <li><Link to="/">To-Do List</Link></li>
+            <li><Link to="/advice">Advice</Link></li>
+          </ul>
+        </nav>
+
+        {/* Routes for Navigation */}
+        <Switch>
+          <Route path="/" exact component={TodoList} />
+          <Route path="/advice" component={Advice} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
 export default App;
+
