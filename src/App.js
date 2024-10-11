@@ -1,135 +1,120 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './App.css'; // Make sure this is imported
+import { Link } from 'react-router-dom';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
+  const [newTaskText, setNewTaskText] = useState('');
+  const [priority, setPriority] = useState('low');
+
+  useEffect(() => {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (savedTasks) {
+      setTasks(savedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
-    if (newTask.trim() === "") return;
-    const newTaskItem = { text: newTask, completed: false };
-    setTasks([...tasks, newTaskItem]);
-    setNewTask("");
+    if (newTaskText.trim() === '') return;
+    const newTask = {
+      id: Date.now(),
+      text: newTaskText,
+      completed: false,
+      priority: priority,
+    };
+    setTasks([...tasks, newTask]);
+    setNewTaskText('');
   };
 
-  const completeTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const changePriority = (id, newPriority) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, priority: newPriority } : task
+      )
+    );
+  };
+
+  const completedTasks = tasks.filter((task) => task.completed).length;
+  const progress = tasks.length > 0 ? (completedTasks / tasks.length) * 100 : 0;
+
   return (
-    <Router>
-      <div className="App">
-        {/* Navigation Menu */}
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/tasks">Task Page</Link>
-          <Link to="/completed">Completed Tasks</Link>
-          <Link to="/advice">Task Management Advice</Link>
-        </nav>
+    <div className="App">
+      <nav>
+        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/advice">Advice</Link>
+      </nav>
 
-        {/* Routes to different pages */}
-        <Routes>
-          {/* Home Route */}
-          <Route path="/" element={<Home />} />
+      <h1>Com-Do List</h1>
 
-          {/* Task Page Route */}
-          <Route path="/tasks" element={
-            <TaskPage 
-              tasks={tasks} 
-              newTask={newTask}
-              setNewTask={setNewTask}
-              addTask={addTask}
-              completeTask={completeTask}
-            />
-          }/>
-
-          {/* Completed Tasks Route */}
-          <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
-
-          {/* Advice Page Route */}
-          <Route path="/advice" element={<Advice />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h1>Welcome to the To-Do List App</h1>
-      <p>Use the menu to navigate through the pages.</p>
-    </div>
-  );
-}
-
-function TaskPage({ tasks, newTask, setNewTask, addTask, completeTask }) {
-  return (
-    <div>
-      <h1>Task Page</h1>
+      {/* Add New Task */}
       <div className="new-task">
         <input
           type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Add a new task"
+          value={newTaskText}
+          onChange={(e) => setNewTaskText(e.target.value)}
+          placeholder="New Task"
         />
-        <button onClick={addTask}>Add Task</button>
+        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+          <option value="low">Low Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button className="btn-add-task" onClick={addTask}>Add Task</button>
       </div>
 
+      {/* Task List */}
       <div className="task-list">
-        {tasks.map((task, index) => (
-          <div key={index} className="task">
-            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-              {task.text}
-            </span>
+        {tasks.map((task) => (
+          <div key={task.id} className={`task ${task.priority}`}>
             <input
               type="checkbox"
               checked={task.completed}
-              onChange={() => completeTask(index)}
+              onChange={() => toggleComplete(task.id)}
             />
+            <span className={`task-text ${task.completed ? 'completed' : ''}`}>
+              {task.text}
+            </span>
+            <button
+              className="priority-btn"
+              onClick={() =>
+                changePriority(task.id, task.priority === 'low' ? 'high' : 'low')
+              }
+            >
+              {task.priority === 'low' ? '⬇️' : '⬆️'}
+            </button>
+            <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+              🗑️
+            </button>
           </div>
         ))}
       </div>
+
+      {/* Progress Bar */}
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+      </div>
+      <p className="progress-text">Progress: {Math.round(progress)}%</p>
     </div>
   );
 }
 
-function CompletedTasks({ tasks }) {
-  const completedTasks = tasks.filter(task => task.completed);
+export default App;
 
-  return (
-    <div>
-      <h1>Completed Tasks</h1>
-      {completedTasks.length > 0 ? (
-        <ul>
-          {completedTasks.map((task, index) => (
-            <li key={index}>{task.text}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No tasks completed yet.</p>
-      )}
-    </div>
-  );
-}
-
-function Advice() {
-  return (
-    <div>
-      <h1>Task Management Advice</h1>
-      <ul>
-        <li>Prioritize your tasks by importance and urgency.</li>
-        <li>Break down large tasks into smaller, more manageable steps.</li>
-        <li>Set specific deadlines for each task.</li>
-        <li>Review your to-do list regularly to adjust priorities.</li>
-        <li>Focus on one task at a time to avoid feeling overwhelmed.</li>
-      </ul>
-    </div>
-  );
 }
 
 export default App;
