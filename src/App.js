@@ -3,8 +3,9 @@ import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTaskText, setNewTaskText] = useState(""); 
-  const [priority, setPriority] = useState("low"); 
+  const [newTaskText, setNewTaskText] = useState("");
+  const [priority, setPriority] = useState("low");
+  const [dueDate, setDueDate] = useState("");
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -16,49 +17,60 @@ function App() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
-useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
- const addTask = () => {
-    if (newTaskText.trim() === "") return; 
+
+  const addTask = () => {
+    if (newTaskText.trim() === "") return;
     const newTask = {
-      id: Date.now(), 
+      id: Date.now(),
       text: newTaskText,
       completed: false,
       priority: priority,
+      dueDate: dueDate,
     };
-    setTasks([...tasks, newTask]); 
+    setTasks([...tasks, newTask]);
     setNewTaskText("");
+    setDueDate("");
   };
-onst toggleComplete = (id) => {
+
+  const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
-const editTaskText = (id, newText) => {
+
+  const editTaskText = (id, newText) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, text: newText } : task
       )
     );
   };
-const changePriority = (id, newPriority) => {
+
+  const changePriority = (id, newPriority) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, priority: newPriority } : task
       )
     );
   };
-const completedTasks = tasks.filter((task) => task.completed).length;
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const clearCompleted = () => {
+    setTasks(tasks.filter((task) => !task.completed));
+  };
+
+  const completedTasks = tasks.filter((task) => task.completed).length;
   const progress = (completedTasks / tasks.length) * 100;
 
   return (
     <div className="App">
       <h1>To-Do List with a Twist</h1>
 
-      {/* Add New Task */}
       <div className="new-task">
         <input
           type="text"
@@ -70,31 +82,42 @@ const completedTasks = tasks.filter((task) => task.completed).length;
           <option value="low">Low Priority</option>
           <option value="high">High Priority</option>
         </select>
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+        />
         <button onClick={addTask}>Add Task</button>
       </div>
 
-      {/* Task List */}
       <div className="task-list">
-        {tasks.map((task) => (
-          <div key={task.id} className={`task ${task.priority}`}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleComplete(task.id)}
-            />
-            <EditableTaskText task={task} onEdit={editTaskText} />
-            <select
-              value={task.priority}
-              onChange={(e) => changePriority(task.id, e.target.value)}
-            >
-              <option value="low">Low</option>
-              <option value="high">High</option>
-            </select>
-          </div>
-        ))}
+        {tasks
+          .sort((a, b) =>
+            a.priority === "high" && b.priority === "low" ? -1 : 1
+          )
+          .map((task) => (
+            <div key={task.id} className={`task ${task.priority}`}>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleComplete(task.id)}
+              />
+              <EditableTaskText task={task} onEdit={editTaskText} />
+              <select
+                value={task.priority}
+                onChange={(e) => changePriority(task.id, e.target.value)}
+              >
+                <option value="low">Low</option>
+                <option value="high">High</option>
+              </select>
+              <p>Due: {task.dueDate || "No Due Date"}</p>
+              <button onClick={() => deleteTask(task.id)}>Delete</button>
+            </div>
+          ))}
       </div>
 
-      {/* Progress Bar */}
+      <button onClick={clearCompleted}>Clear Completed</button>
+
       <div className="progress-bar">
         <div
           style={{ width: `${progress}%`, background: "#4caf50", height: "20px" }}
@@ -104,6 +127,7 @@ const completedTasks = tasks.filter((task) => task.completed).length;
     </div>
   );
 }
+
 const EditableTaskText = ({ task, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState(task.text);
