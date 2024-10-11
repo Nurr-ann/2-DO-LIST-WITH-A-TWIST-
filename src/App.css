@@ -12,7 +12,29 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Rounded Task Containers */
+/* Navigation Menu */
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #0099ff;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #005f99;
+}
+
+/* Task List */
+.task-list {
+  margin-top: 20px;
+}
+
 .task {
   display: flex;
   justify-content: space-between;
@@ -23,19 +45,6 @@ h1 {
   margin: 10px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 2px solid #99d6ff;
-}
-
-/* Completed Task Section */
-.completed-tasks {
-  background-color: #cceeff;
-  border-radius: 40px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.completed-tasks h2 {
-  font-size: 1.5rem;
-  color: #666;
 }
 
 /* Buttons */
@@ -70,21 +79,8 @@ button:hover {
   width: 0; /* Dynamic based on progress */
 }
 
-/* Menu Styling */
-.menu-button {
-  background-color: transparent;
-  border: 2px solid #0099ff;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.menu-button:hover {
-  background-color: #cceeff;
-}
-
-/* Task Inputs */
-input[type="text"], input[type="date"] {
+/* New Task Input */
+input[type="text"] {
   padding: 10px;
   border: 2px solid #99d6ff;
   border-radius: 15px;
@@ -93,6 +89,10 @@ input[type="text"], input[type="date"] {
 
 /* Completed Task Decoration */
 .task span {
+  font-size: 1.1rem;
+  color: #333;
+}
+
   font-size: 1.1rem;
   color: #333;
 }
