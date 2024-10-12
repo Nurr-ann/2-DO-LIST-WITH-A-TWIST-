@@ -30,7 +30,7 @@ function TodoList({ tasks, setTasks }) {
   const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted, animate: true } : task
       )
     );
   };
@@ -78,7 +78,7 @@ function TodoList({ tasks, setTasks }) {
       <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => (
-            <div key={task.id} className={`task-item ${task.priority}`}>
+            <div key={task.id} className={`task-item ${task.priority} ${task.isCompleted ? 'task-completed' : ''}`}>
               <div className="task-info">
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
