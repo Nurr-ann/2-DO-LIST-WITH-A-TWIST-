@@ -1,4 +1,3 @@
-// File: App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
@@ -31,7 +30,7 @@ function TodoList({ tasks, setTasks }) {
   const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted, animate: true } : task
       )
     );
   };
@@ -71,64 +70,42 @@ function TodoList({ tasks, setTasks }) {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>HELLO, let's create your to-do list together</h1>
+        <h1>HELLO, LET'S CREATE YOUR TO-DO LIST TOGETHER</h1>
       </header>
 
-      <div className="task-progress-section">
+      <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => (
-            <div key={task.id} className={`task-item priority-${task.priority}`}>
+            <div key={task.id} className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}>
               <div className="task-info">
-                <div className="task-header">
-                  <AiOutlineClockCircle size={22} className="task-icon" />
-                  <span className="task-title">{task.text}</span>
-                </div>
-                <div className="progress-bar">
-                  <div
-                    className="progress"
-                    style={{ width: `${task.progress}%` }}
-                  ></div>
-                </div>
+                <AiOutlineClockCircle size={22} />
+                <span>{task.text}</span>
               </div>
               <div className="task-controls">
-                <button
-                  className={`complete-btn ${
-                    task.isCompleted ? 'completed' : ''
-                  }`}
-                  onClick={() => toggleComplete(task.id)}
-                >
-                  <FiCheckCircle size={24} />
+                <button className="complete-btn" onClick={() => toggleComplete(task.id)}>
+                  <FiCheckCircle />
                 </button>
                 <input
                   type="range"
-                  className="progress-input"
                   value={task.progress}
-                  onChange={(e) =>
-                    handleProgressChange(task.id, e.target.value)
-                  }
+                  onChange={(e) => handleProgressChange(task.id, e.target.value)}
                   min="0"
                   max="100"
                 />
-                <button
-                  className="priority-btn"
-                  onClick={() => increasePriority(task.id)}
-                >
-                  <FiArrowUp size={18} />
+                <button onClick={() => increasePriority(task.id)}>
+                  <FiArrowUp />
                 </button>
-                <button
-                  className="priority-btn"
-                  onClick={() => decreasePriority(task.id)}
-                >
-                  <FiArrowDown size={18} />
+                <button onClick={() => decreasePriority(task.id)}>
+                  <FiArrowDown />
                 </button>
                 <button className="delete-btn" onClick={() => deleteTask(task.id)}>
-                  <FiTrash size={24} />
+                  <FiTrash />
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <div className="no-tasks">Add a task to get started</div>
+          <div>No tasks yet</div>
         )}
       </div>
 
@@ -138,30 +115,11 @@ function TodoList({ tasks, setTasks }) {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add Task"
-          className="task-input"
         />
         <button onClick={addTask} className="add-task-btn">
           <FiPlusCircle size={40} />
         </button>
       </div>
-    </div>
-  );
-}
-
-// Circular Menu Component
-function CircularMenu() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className={`circular-menu ${open ? 'open' : ''}`}>
-      <button className="menu-btn" onClick={() => setOpen(!open)}>
-        <FiMenu size={40} />
-      </button>
-      <nav className="menu-options">
-        <Link to="/" className="menu-option">To-Do List</Link>
-        <Link to="/advice" className="menu-option">Advice</Link>
-        <Link to="/completed" className="menu-option">Completed Tasks</Link>
-      </nav>
     </div>
   );
 }
@@ -172,8 +130,6 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {/* Circular Menu */}
-        <CircularMenu />
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
@@ -185,4 +141,5 @@ function App() {
 }
 
 export default App;
+
 
