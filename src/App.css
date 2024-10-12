@@ -194,50 +194,64 @@ body {
   color: white;
 }
 
-/* Completed task list styling */
-.completed-task-list {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-}
-
-.completed-task-list h2 {
-  font-size: 24px;
-  color: #2c3e50;
+/* Completed Tasks Page Styling */
+.completed-tasks-page {
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 700px;
 }
 
-.completed-task-list ul {
-  padding: 0;
+.completed-tasks-header h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.completed-tasks-content {
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.completed-tasks-list {
   list-style-type: none;
+  padding: 0;
 }
 
-.completed-task-list li {
+.completed-task-item {
   font-size: 18px;
   color: #34495e;
   padding: 10px;
-  border-bottom: 1px solid #ecf0f1;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.completed-task-list li:last-child {
-  border-bottom: none;
+.no-tasks-message {
+  font-size: 18px;
+  color: #7f8c8d;
 }
 
-.completed-task-list a {
-  margin-top: 20px;
+.go-back-link {
   display: inline-block;
-  color: #3498db;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
   text-decoration: none;
-  text-align: center;
-  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
-.completed-task-list a:hover {
-  text-decoration: underline;
+.go-back-link:hover {
+  background-color: #2980b9;
 }
