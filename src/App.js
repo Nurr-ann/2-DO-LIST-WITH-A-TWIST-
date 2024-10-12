@@ -30,7 +30,7 @@ function TodoList({ tasks, setTasks }) {
   const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: !task.isCompleted, animate: true } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
       )
     );
   };
@@ -140,6 +140,27 @@ function CircularMenu() {
         <Link to="/advice" className="menu-option">Advice</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
       </nav>
+    </div>
+  );
+}
+
+// Completed Tasks Page
+function CompletedTasks({ tasks }) {
+  const completedTasks = tasks.filter((task) => task.isCompleted);
+
+  return (
+    <div className="completed-task-list">
+      <h2>COMPLETED TASKS</h2>
+      {completedTasks.length > 0 ? (
+        <ul>
+          {completedTasks.map((task) => (
+            <li key={task.id}>{task.text}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No tasks completed yet</p>
+      )}
+      <Link to="/">Go back to To-Do List</Link>
     </div>
   );
 }

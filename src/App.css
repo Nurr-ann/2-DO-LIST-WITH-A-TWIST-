@@ -97,6 +97,35 @@ body {
   }
 }
 
+/* Add task section */
+.add-task-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: 20px;
+}
+
+.add-task-section input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.add-task-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 /* Circular Menu */
 .circular-menu {
   position: fixed;
