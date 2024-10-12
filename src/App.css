@@ -1,58 +1,122 @@
-/* App.css */
+/* Full-Page Styling */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
   background-image: url('/pexels-carolinephoenix-5248469 (1).jpg');
-
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-}
-
-.app {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
+/* Main Container */
 .app-container {
-  max-width: 500px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.app-header h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  width: 600px;
+  background: rgba(255, 255, 255, 0.95); /* More solid, less transparent */
+  border-radius: 20px;
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.15); /* Bigger shadow for depth */
+  padding: 40px;
   text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
+.app-container:hover {
+  transform: translateY(-10px); /* Slight lift on hover for modern look */
+  box-shadow: 0px 18px 50px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+/* Title Styling */
+.app-header h1 {
+  font-size: 32px; /* Larger, more prominent title */
+  font-weight: 700; /* Bolder for importance */
+  color: #2c3e50;  /* Deep gray-blue for better contrast */
+  margin-bottom: 10px;
+  text-transform: uppercase; /* All caps for a modern, sharp look */
+  letter-spacing: 2px;
+}
+
+.app-header p {
+  font-size: 16px;
+  color: #7f8c8d; /* Light gray for subtext */
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* Input Container */
 .add-task-section {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1; /* Light gray input background */
+  padding: 10px 20px;
+  border-radius: 30px; /* Fully rounded */
+  border: 1px solid #bdc3c7; /* Soft border */
+  transition: background-color 0.3s ease;
 }
 
+/* Task Input Box */
 .add-task-section input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 25px;
-}
-
-.add-task-btn {
-  background: none;
   border: none;
-  cursor: pointer;
-  color: #007bff;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+  padding: 12px;
+  font-size: 18px;
+  color: #2c3e50; /* Dark text color */
 }
 
-/* Circular Menu */
+.add-task-section input::placeholder {
+  color: #95a5a6; /* Lighter gray for placeholder text */
+}
+
+/* Add Task Button */
+.add-task-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 8px 15px rgba(52, 152, 219, 0.4); /* Soft button shadow */
+}
+
+/* Hover effect for Add Button */
+.add-task-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.1); /* Grows slightly */
+  box-shadow: 0px 12px 25px rgba(52, 152, 219, 0.5); /* Larger shadow */
+}
+
+.add-task-btn:active {
+  background-color: #1f618d;
+  transform: scale(0.95); /* Shrinks slightly */
+}
+
+/* Footer and Links */
+.footer {
+  margin-top: 30px;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #bdc3c7;
+}
+
+.footer a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #2980b9;
+}
+
+/* Advanced Circular Menu Styling */
 .circular-menu {
   position: fixed;
   bottom: 30px;
@@ -61,14 +125,18 @@ body {
 }
 
 .menu-btn {
-  background-color: #007bff;
+  background-color: #3498db;
   color: white;
   border: none;
   border-radius: 50%;
   padding: 20px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: #2980b9;
 }
 
 .menu-options {
@@ -87,31 +155,17 @@ body {
 .menu-option {
   display: block;
   background-color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 50%;
   text-align: center;
   text-decoration: none;
-  color: #007bff;
+  color: #3498db;
   font-size: 14px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease;
 }
 
 .menu-option:hover {
-  background-color: #007bff;
+  background-color: #3498db;
   color: white;
 }
-
-/* Priority Styles */
-.priority-low {
-  border-left: 5px solid green;
-}
-
-.priority-medium {
-  border-left: 5px solid orange;
-}
-
-.priority-high {
-  border-left: 5px solid red;
-}
-
