@@ -30,7 +30,7 @@ function TodoList({ tasks, setTasks }) {
   const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: !task.isCompleted, animate: true } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
       )
     );
   };
@@ -47,7 +47,8 @@ function TodoList({ tasks, setTasks }) {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
-          const newPriority = task.priority === 'low' ? 'medium' : 'high';
+          const newPriority =
+            task.priority === 'low' ? 'medium' : task.priority === 'medium' ? 'high' : 'high';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -59,7 +60,8 @@ function TodoList({ tasks, setTasks }) {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
-          const newPriority = task.priority === 'high' ? 'medium' : 'low';
+          const newPriority =
+            task.priority === 'high' ? 'medium' : task.priority === 'medium' ? 'low' : 'low';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -76,7 +78,7 @@ function TodoList({ tasks, setTasks }) {
       <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => (
-            <div key={task.id} className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}>
+            <div key={task.id} className={`task-item ${task.priority}`}>
               <div className="task-info">
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
@@ -124,12 +126,32 @@ function TodoList({ tasks, setTasks }) {
   );
 }
 
+// Circular Menu Component for Navigation
+function CircularMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={`circular-menu ${open ? 'open' : ''}`}>
+      <button className="menu-btn" onClick={() => setOpen(!open)}>
+        <FiMenu size={40} />
+      </button>
+      <nav className={`menu-options ${open ? 'visible' : ''}`}>
+        <Link to="/" className="menu-option">To-Do List</Link>
+        <Link to="/advice" className="menu-option">Advice</Link>
+        <Link to="/completed" className="menu-option">Completed Tasks</Link>
+      </nav>
+    </div>
+  );
+}
+
 function App() {
   const [tasks, setTasks] = useState([]);
 
   return (
     <Router>
       <div className="app">
+        {/* Circular Menu */}
+        <CircularMenu />
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
@@ -141,5 +163,3 @@ function App() {
 }
 
 export default App;
-
-

@@ -14,7 +14,7 @@ body {
   align-items: center;
 }
 
-/* Main container for the to-do list */
+/* Main container */
 .app-container {
   width: 600px;
   background: rgba(255, 255, 255, 0.95);
@@ -24,19 +24,7 @@ body {
   text-align: center;
 }
 
-/* Title Styling */
-.app-header h1 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
-
-/* Task list styling */
-.task-list {
-  margin-top: 20px;
-}
-
+/* Task item styling */
 .task-item {
   display: flex;
   align-items: center;
@@ -48,11 +36,23 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.task-item.low {
+  border-left: 5px solid green;
+}
+
+.task-item.medium {
+  border-left: 5px solid orange;
+}
+
+.task-item.high {
+  border-left: 5px solid red;
+}
+
 .task-item:hover {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Priority buttons and controls */
+/* Task controls */
 .task-controls {
   display: flex;
   gap: 10px;
@@ -81,19 +81,7 @@ body {
   color: #e74c3c;
 }
 
-/* Completed task list */
-.completed-task-list {
-  text-align: center;
-}
-
-.completed-task-list li {
-  list-style: none;
-  font-size: 18px;
-  color: #2c3e50;
-  margin: 5px 0;
-}
-
-/* Add task section styling */
+/* Add task section */
 .add-task-section {
   display: flex;
   justify-content: space-between;
@@ -104,7 +92,6 @@ body {
   margin-top: 20px;
 }
 
-/* Input field */
 .add-task-section input {
   border: none;
   outline: none;
@@ -121,29 +108,57 @@ body {
   padding: 16px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+/* Circular Menu */
+.circular-menu {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: #0056b3;
+}
+
+.menu-options {
+  display: none;
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-options.visible {
+  display: flex;
+}
+
+.menu-option {
+  background-color: white;
+  padding: 12px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: #3498db;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease;
 }
 
-.add-task-btn:hover {
-  background-color: #2980b9;
-}
-
-.add-task-btn:active {
-  background-color: #1f618d;
-}
-
-/* Task completion animation */
-.task-completed {
-  animation: taskDone 0.8s ease forwards;
-}
-
-@keyframes taskDone {
-  0% {
-    background-color: #2ecc71;
-    transform: scale(1);
-  }
-  100% {
-    background-color: #ecf0f1;
-    transform: scale(1.1);
-  }
+.menu-option:hover {
+  background-color: #007bff;
+  color: white;
 }
