@@ -9,6 +9,7 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
+  const [timer, setTimer] = useState(0);
 
   const addTask = () => {
     if (newTask.trim() === '') return;
@@ -18,9 +19,11 @@ function TodoList({ tasks, setTasks }) {
       priority: 'low',
       isCompleted: false,
       progress: 0,
+      timer: timer, // Add timer to task
     };
     setTasks([...tasks, task]);
     setNewTask('');
+    setTimer(0); // Reset timer input after adding task
   };
 
   const deleteTask = (taskId) => {
@@ -47,7 +50,8 @@ function TodoList({ tasks, setTasks }) {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
-          const newPriority = task.priority === 'low' ? 'medium' : 'high';
+          const newPriority =
+            task.priority === 'low' ? 'medium' : task.priority === 'medium' ? 'high' : 'high';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -59,7 +63,8 @@ function TodoList({ tasks, setTasks }) {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
-          const newPriority = task.priority === 'high' ? 'medium' : 'low';
+          const newPriority =
+            task.priority === 'high' ? 'medium' : task.priority === 'medium' ? 'low' : 'low';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -80,6 +85,9 @@ function TodoList({ tasks, setTasks }) {
               <div className="task-info">
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
+                {task.timer > 0 && (
+                  <span className="task-timer">⏲ {task.timer} min</span> // Display timer if set
+                )}
               </div>
               <div className="task-controls">
                 <button className="complete-btn" onClick={() => toggleComplete(task.id)}>
@@ -116,6 +124,13 @@ function TodoList({ tasks, setTasks }) {
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add Task"
         />
+        <input
+          type="number"
+          value={timer}
+          onChange={(e) => setTimer(e.target.value)}
+          placeholder="Timer (min)"
+          min="0"
+        />
         <button onClick={addTask} className="add-task-btn">
           <FiPlusCircle size={40} />
         </button>
@@ -123,6 +138,8 @@ function TodoList({ tasks, setTasks }) {
     </div>
   );
 }
+
+// Circular Menu Component for Navigation
 function CircularMenu() {
   const [open, setOpen] = useState(false);
 
@@ -146,6 +163,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <CircularMenu />
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />

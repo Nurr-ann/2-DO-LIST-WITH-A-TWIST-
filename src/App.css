@@ -13,6 +13,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 /* Main container */
 .app-container {
   width: 600px;
@@ -107,7 +108,8 @@ body {
   margin-top: 20px;
 }
 
-.add-task-section input {
+/* Task input field */
+.add-task-section input[type="text"] {
   border: none;
   outline: none;
   background-color: transparent;
@@ -116,6 +118,20 @@ body {
   font-size: 18px;
 }
 
+/* Timer input field */
+.add-task-section input[type="number"] {
+  border: none;
+  background-color: #fff;
+  padding: 10px;
+  width: 100px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #34495e;
+  outline: none;
+}
+
+/* Add task button */
 .add-task-btn {
   background-color: #3498db;
   color: white;
@@ -185,19 +201,24 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .completed-task-list h2 {
   font-size: 24px;
   color: #2c3e50;
+  text-align: center;
 }
 
 .completed-task-list ul {
   padding: 0;
+  list-style-type: none;
 }
 
 .completed-task-list li {
-  list-style-type: none;
   font-size: 18px;
   color: #34495e;
   padding: 10px;
@@ -213,6 +234,8 @@ body {
   display: inline-block;
   color: #3498db;
   text-decoration: none;
+  text-align: center;
+  width: 100%;
 }
 
 .completed-task-list a:hover {
