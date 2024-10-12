@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Advice from './Advice';
-import CompletedTasks from './CompletedTasks';
-import './App.css';
+import Advice from './Advice';  // Make sure Advice.js exists and is in the same folder
+import CompletedTasks from './CompletedTasks';  // Ensure this file exists
+import './App.css';  // Ensure App.css is properly imported
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
