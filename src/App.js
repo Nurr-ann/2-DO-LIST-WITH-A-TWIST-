@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
-import CompletedTasks from './CompletedTasks'; // Importing the CompletedTasks component
+import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -150,28 +150,32 @@ function TodoList({ tasks, setTasks }) {
   );
 }
 
+// Circular Menu Component
+function CircularMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={`circular-menu ${open ? 'open' : ''}`}>
+      <button className="menu-btn" onClick={() => setOpen(!open)}>
+        <FiMenu size={40} />
+      </button>
+      <nav className="menu-options">
+        <Link to="/" className="menu-option">To-Do List</Link>
+        <Link to="/advice" className="menu-option">Advice</Link>
+        <Link to="/completed" className="menu-option">Completed Tasks</Link>
+      </nav>
+    </div>
+  );
+}
+
 function App() {
   const [tasks, setTasks] = useState([]);
 
   return (
     <Router>
       <div className="app">
-        <div className="sidebar">
-          <nav className="app-nav">
-            <ul>
-              <li>
-                <Link to="/" className="nav-link">To-Do List</Link>
-              </li>
-              <li>
-                <Link to="/advice" className="nav-link">Advice</Link>
-              </li>
-              <li>
-                <Link to="/completed" className="nav-link">Completed Tasks</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
+        {/* Circular Menu */}
+        <CircularMenu />
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
