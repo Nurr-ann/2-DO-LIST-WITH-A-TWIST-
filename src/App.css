@@ -4,7 +4,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-image: url('/mnt/data/pexels-carolinephoenix-5248469 (1).jpg'); /* Correct path for background image */
+  background-image: url('/pexels-carolinephoenix-5248469 (1).jpg');
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
