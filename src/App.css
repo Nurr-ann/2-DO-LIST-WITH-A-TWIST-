@@ -1,21 +1,70 @@
 /* App.css */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #e0f7fa; /* Baby blue background */
   margin: 0;
   padding: 0;
+  background-image: url('/mnt/data/image.png'); /* Background image */
+  background-size: cover;
+  background-position: center;
+}
+
+.app {
+  display: flex;
+}
+
+.sidebar {
+  width: 60px;
+  height: 100vh;
+  position: fixed;
+  left: -150px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar:hover {
+  left: 0;
+}
+
+.app-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.app-nav ul li {
+  margin: 20px 0;
+}
+
+.nav-link {
+  display: block;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateX(10px);
 }
 
 .app-container {
+  margin-left: 60px;
   max-width: 800px;
-  margin: 0 auto;
   padding: 20px;
-  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8); /* For better text visibility */
+  border-radius: 10px;
 }
 
 .app-header h1 {
-  font-size: 28px;
-  color: #333;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
@@ -42,25 +91,6 @@ body {
   border-left: 5px solid red;
 }
 
-.task-info {
-  flex: 1;
-}
-
-.progress-bar {
-  background-color: #f0f0f0;
-  height: 10px;
-  width: 100%;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.progress {
-  background-color: #4caf50;
-  height: 100%;
-  border-radius: 5px;
-  transition: width 0.3s ease-in-out;
-}
-
 .add-task-section {
   display: flex;
   justify-content: center;
@@ -79,16 +109,4 @@ body {
   border: none;
   cursor: pointer;
   color: #007bff;
-}
-
-.completed-tasks-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.completed-tasks-list li {
-  background-color: #d4edda;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
 }

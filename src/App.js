@@ -156,16 +156,22 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {/* Navigation */}
-        <nav className="app-nav">
-          <ul>
-            <li><Link to="/">To-Do List</Link></li>
-            <li><Link to="/advice">Advice</Link></li>
-            <li><Link to="/completed">Completed Tasks</Link></li>
-          </ul>
-        </nav>
+        <div className="sidebar">
+          <nav className="app-nav">
+            <ul>
+              <li>
+                <Link to="/" className="nav-link">To-Do List</Link>
+              </li>
+              <li>
+                <Link to="/advice" className="nav-link">Advice</Link>
+              </li>
+              <li>
+                <Link to="/completed" className="nav-link">Completed Tasks</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-        {/* Routes for Navigation */}
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
@@ -177,4 +183,3 @@ function App() {
 }
 
 export default App;
-
