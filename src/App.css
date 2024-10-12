@@ -150,15 +150,15 @@ body {
 }
 
 .menu-options {
+  display: none;
   position: absolute;
   bottom: 80px;
   right: 10px;
-  display: none;
   flex-direction: column;
   gap: 10px;
 }
 
-.circular-menu.open .menu-options {
+.menu-options.visible {
   display: flex;
 }
 

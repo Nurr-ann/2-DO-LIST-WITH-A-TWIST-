@@ -123,6 +123,22 @@ function TodoList({ tasks, setTasks }) {
     </div>
   );
 }
+function CircularMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={`circular-menu ${open ? 'open' : ''}`}>
+      <button className="menu-btn" onClick={() => setOpen(!open)}>
+        <FiMenu size={40} />
+      </button>
+      <nav className={`menu-options ${open ? 'visible' : ''}`}>
+        <Link to="/" className="menu-option">To-Do List</Link>
+        <Link to="/advice" className="menu-option">Advice</Link>
+        <Link to="/completed" className="menu-option">Completed Tasks</Link>
+      </nav>
+    </div>
+  );
+}
 
 function App() {
   const [tasks, setTasks] = useState([]);
