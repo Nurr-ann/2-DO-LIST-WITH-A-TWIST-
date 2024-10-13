@@ -1,6 +1,8 @@
 // File: CompletedTasks.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './CompletedTasks.css';
+
 
 function CompletedTasks({ tasks }) {
   const completedTasks = tasks.filter((task) => task.isCompleted);

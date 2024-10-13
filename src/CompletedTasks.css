@@ -1,0 +1,71 @@
+/* Completed Tasks Page Styling */
+.completed-tasks-page {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    margin: 50px auto;
+    max-width: 700px;
+  }
+  
+  /* Header Styling */
+  .completed-tasks-header {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+  /* Completed Tasks List */
+  .completed-tasks-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .completed-task-item {
+    font-size: 18px;
+    color: #34495e;
+    padding: 15px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  /* Hover Effect on Task */
+  .completed-task-item:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Empty State Message */
+  .no-tasks-message {
+    font-size: 18px;
+    color: #95a5a6;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Go Back Link Styling */
+  .go-back-link {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-back-link:hover {
+    background-color: #2980b9;
+  }
+  
