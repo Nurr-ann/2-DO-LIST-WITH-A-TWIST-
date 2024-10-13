@@ -10,13 +10,16 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
   const [timer, setTimer] = useState(0);
+  const [category, setCategory] = useState('Work'); // State for category selection
+  const [filter, setFilter] = useState('All'); // State for filtering tasks by category
 
   const addTask = () => {
     if (newTask.trim() === '') return;
     const task = {
       id: Date.now(),
       text: newTask,
-      priority: 'low', // Default priority is low
+      category: category, // Add category to the task
+      priority: 'low', // Default priority
       isCompleted: false,
       progress: 0,
       timer: timer, // Add timer to task
@@ -24,6 +27,7 @@ function TodoList({ tasks, setTasks }) {
     setTasks([...tasks, task]);
     setNewTask('');
     setTimer(0); // Reset timer input after adding task
+    setCategory('Work'); // Reset category selection
   };
 
   const deleteTask = (taskId) => {
@@ -83,24 +87,49 @@ function TodoList({ tasks, setTasks }) {
     setTasks(sortedTasks);
   };
 
+  // Function to filter tasks by category
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'All') return true; // Show all tasks if filter is set to 'All'
+    return task.category === filter;
+  });
+
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>ADD YOUR AND EDIT YOUR TASKS</h1>
+        <h1>ADD AND EDIT YOUR TASKS</h1>
       </header>
+
+      {/* Filter Dropdown */}
+      <div className="filter-section">
+        <label htmlFor="filter">Filter by Category:</label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </div>
 
       <button onClick={sortByPriority} className="sort-btn">
         Sort by Priority
       </button>
 
       <div className="task-list">
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task) => (
             <div
               key={task.id}
               className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}
             >
               <div className="task-info">
+                {/* Colored category tag */}
+                <span className={`category-tag ${task.category.toLowerCase()}`}>
+                  {task.category}
+                </span>
                 {/* Circle representing priority */}
                 <span
                   className={`priority-circle ${task.priority}`}
@@ -109,7 +138,7 @@ function TodoList({ tasks, setTasks }) {
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
                 {task.timer > 0 && (
-                  <span className="task-timer">⏲ {task.timer} min</span> // Display timer if set
+                  <span className="task-timer">⏲ {task.timer} min</span>
                 )}
               </div>
               <div className="task-controls">
@@ -136,7 +165,7 @@ function TodoList({ tasks, setTasks }) {
             </div>
           ))
         ) : (
-          <div>No tasks yet</div>
+          <div>No tasks available for this category</div>
         )}
       </div>
 
@@ -154,6 +183,16 @@ function TodoList({ tasks, setTasks }) {
           placeholder="Timer (min)"
           min="0"
         />
+        {/* Category Dropdown */}
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+
         <button onClick={addTask} className="add-task-btn">
           <FiPlusCircle size={40} />
         </button>
