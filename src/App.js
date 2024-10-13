@@ -5,8 +5,6 @@ import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-<Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
-
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
