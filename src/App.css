@@ -136,15 +136,23 @@ body {
 }
 
 /* Add task section */
-.add-task-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ecf0f1;
-  padding: 10px 20px;
-  border-radius: 30px;
-  margin-top: 20px;
+.add-task-section select {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+  transition: border 0.3s ease;
 }
+
+.add-task-section select:hover {
+  border-color: #2980b9;
+}
+
 
 /* Task input field */
 .add-task-section input[type="text"] {
@@ -177,6 +185,14 @@ body {
   padding: 16px;
   border-radius: 50%;
   cursor: pointer;
+  margin-left: 10px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
 }
 
 /* Circular Menu */
@@ -307,22 +323,45 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .sort-btn:hover {
   background-color: #2980b9;
+  transform: scale(1.05);
 }
+
 
 /* Filter Dropdown */
 .filter-section {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-section label {
+  font-size: 16px;
+  color: #34495e;
+  font-weight: bold;
 }
 
 .filter-section select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.filter-section select:hover {
+  border: 1px solid #2980b9;
 }
