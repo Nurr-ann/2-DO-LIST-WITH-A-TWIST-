@@ -135,11 +135,33 @@ body {
   }
 }
 
+.task-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  outline: none;
+  margin-bottom: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 /* Add task section */
 .add-task-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: #ecf0f1;
   padding: 10px 20px;
   border-radius: 30px;
@@ -301,15 +323,28 @@ body {
   background-color: #e74c3c; /* Red for Urgent */
 }
 
+.category-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  width: 50%;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
 /* Sort Button */
 .sort-btn {
+  padding: 10px 20px;
+  font-size: 16px;
   background-color: #3498db;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sort-btn:hover {
@@ -379,4 +414,23 @@ body {
 .task-item.overdue {
   background-color: #ffebee;
   border-left: 5px solid #e74c3c; /* Red border for overdue */
+}
+.timer-category-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Timer input styling */
+.timer-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 50%;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }

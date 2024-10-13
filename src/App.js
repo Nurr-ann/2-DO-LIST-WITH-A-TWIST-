@@ -194,6 +194,7 @@ function TodoList({ tasks, setTasks }) {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add Task"
+           className="task-input"
         />
         <input
           type="number"
