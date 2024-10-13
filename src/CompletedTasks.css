@@ -8,17 +8,44 @@
     width: 80%;
     margin: 50px auto;
     max-width: 700px;
+    position: relative;
+    overflow: hidden;
   }
   
   /* Header Styling */
   .completed-tasks-header {
-    font-size: 28px;
+    font-size: 32px;
     color: #2c3e50;
     margin-bottom: 30px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
+  }
+  
+  /* Adding background shapes (abstract circles) */
+  .completed-tasks-page::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(52, 152, 219, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .completed-tasks-page::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(46, 204, 113, 0.2);
+    border-radius: 50%;
+    z-index: -1;
   }
   
   /* Completed Tasks List */
@@ -30,27 +57,47 @@
   .completed-task-item {
     font-size: 18px;
     color: #34495e;
-    padding: 15px;
+    padding: 20px;
     background-color: #f9f9f9;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
   
-  /* Hover Effect on Task */
+  /* Add hover effect to task */
   .completed-task-item:hover {
-    transform: translateY(-3px);
+    transform: translateY(0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Animation for completed task list items */
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   /* Empty State Message */
   .no-tasks-message {
-    font-size: 18px;
-    color: #95a5a6;
+    font-size: 20px;
+    color: #7f8c8d;
     padding: 20px;
     background-color: #ecf0f1;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 20px;
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
   
   /* Go Back Link Styling */
@@ -62,10 +109,10 @@
     text-decoration: none;
     border-radius: 5px;
     margin-top: 20px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
   .go-back-link:hover {
     background-color: #2980b9;
+    transform: scale(1.05);
   }
-  
