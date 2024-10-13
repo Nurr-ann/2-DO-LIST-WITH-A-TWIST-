@@ -16,7 +16,7 @@ function TodoList({ tasks, setTasks }) {
     const task = {
       id: Date.now(),
       text: newTask,
-      priority: 'low',
+      priority: 'low', // Default priority is low
       isCompleted: false,
       progress: 0,
       timer: timer, // Add timer to task
@@ -59,7 +59,7 @@ function TodoList({ tasks, setTasks }) {
       })
     );
   };
-  
+
   const decreasePriority = (taskId) => {
     setTasks(
       tasks.map((task) => {
@@ -73,18 +73,39 @@ function TodoList({ tasks, setTasks }) {
       })
     );
   };
-  
+
+  // Function to sort tasks by priority: high > medium > low
+  const sortByPriority = () => {
+    const sortedTasks = [...tasks].sort((a, b) => {
+      const priorityOrder = { low: 3, medium: 2, high: 1 }; // Order: high first
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
+    });
+    setTasks(sortedTasks);
+  };
+
   return (
     <div className="app-container">
       <header className="app-header">
         <h1>HELLO, LET'S CREATE YOUR TO-DO LIST TOGETHER</h1>
       </header>
 
+      <button onClick={sortByPriority} className="sort-btn">
+        Sort by Priority
+      </button>
+
       <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => (
-            <div key={task.id} className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}>
+            <div
+              key={task.id}
+              className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}
+            >
               <div className="task-info">
+                {/* Circle representing priority */}
+                <span
+                  className={`priority-circle ${task.priority}`}
+                  title={`Priority: ${task.priority}`}
+                ></span>
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
                 {task.timer > 0 && (

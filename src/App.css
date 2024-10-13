@@ -36,21 +36,54 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* Task item styling based on priority */
-.task-item.low {
-  border-left: 5px solid green; /* Green for low priority */
+/* Priority Circle beside task */
+.priority-circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.task-item.medium {
-  border-left: 5px solid orange; /* Orange for medium priority */
+.priority-circle.low {
+  background-color: green;
 }
 
-.task-item.high {
-  border-left: 5px solid red; /* Red for high priority */
+.priority-circle.medium {
+  background-color: orange;
 }
 
-.task-item:hover {
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+.priority-circle.high {
+  background-color: red;
+}
+
+/* Sort Button */
+.sort-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.sort-btn:hover {
+  background-color: #2980b9;
+}
+/* Sort Button */
+.sort-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.sort-btn:hover {
+  background-color: #2980b9;
 }
 
 /* Task controls */
