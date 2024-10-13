@@ -1,12 +1,10 @@
-/* App.css */
-
 /* General body styling */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-image: url('/pexels-carolinephoenix-5248469 (1).jpg');
+  background-image: url('./pexels-carolinephoenix-5248469 (1).jpg'); /* Ensure correct image path */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -57,22 +55,6 @@ body {
   background-color: red;
 }
 
-/* Sort Button */
-.sort-btn {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.sort-btn:hover {
-  background-color: #2980b9;
-}
-
-
 /* Task controls */
 .task-controls {
   display: flex;
@@ -107,6 +89,11 @@ body {
   animation: taskDone 0.6s ease forwards;
 }
 
+.task-completed .task-info span {
+  text-decoration: line-through;
+  color: #95a5a6; /* Lighter color to indicate completion */
+}
+
 @keyframes taskDone {
   0% {
     background-color: #2ecc71;
@@ -119,14 +106,21 @@ body {
 }
 
 /* Add task section */
-.add-task-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ecf0f1;
-  padding: 10px 20px;
-  border-radius: 30px;
-  margin-top: 20px;
+.add-task-section select {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.add-task-section select:hover {
+  border-color: #2980b9;
 }
 
 /* Task input field */
@@ -160,6 +154,14 @@ body {
   padding: 16px;
   border-radius: 50%;
   cursor: pointer;
+  margin-left: 10px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
 }
 
 /* Circular Menu */
@@ -262,6 +264,7 @@ body {
 .completed-task-list a:hover {
   text-decoration: underline;
 }
+
 /* Category Tags */
 .category-tag {
   display: inline-block;
@@ -290,22 +293,53 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .sort-btn:hover {
   background-color: #2980b9;
+  transform: scale(1.05);
 }
 
 /* Filter Dropdown */
 .filter-section {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-section label {
+  font-size: 16px;
+  color: #34495e;
+  font-weight: bold;
 }
 
 .filter-section select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.filter-section select:hover {
+  border: 1px solid #2980b9;
+}
+
+/* Spacing for layout */
+.task-list {
+  margin-top: 20px;
+}
+
+.add-task-section {
+  margin-top: 30px;
 }
