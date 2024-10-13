@@ -346,3 +346,37 @@ body {
 .filter-section select:hover {
   border: 1px solid #2980b9;
 }
+
+/* Due Date styling for task item */
+.due-date {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #34495e;
+  background-color: #ecf0f1;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+/* Date picker input styling */
+.date-picker {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.date-picker:hover {
+  border-color: #2980b9;
+}
+
+/* Overdue task styling */
+.task-item.overdue {
+  background-color: #ffebee;
+  border-left: 5px solid #e74c3c; /* Red border for overdue */
+}

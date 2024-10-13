@@ -12,6 +12,7 @@ function TodoList({ tasks, setTasks }) {
   const [timer, setTimer] = useState(0);
   const [category, setCategory] = useState('Work'); // State for category selection
   const [filter, setFilter] = useState('All'); // State for filtering tasks by category
+  const [dueDate, setDueDate] = useState('');
 
   const addTask = () => {
     if (newTask.trim() === '') return;
@@ -23,11 +24,13 @@ function TodoList({ tasks, setTasks }) {
       isCompleted: false,
       progress: 0,
       timer: timer, // Add timer to task
+      dueDate: dueDate,
     };
     setTasks([...tasks, task]);
     setNewTask('');
     setTimer(0); // Reset timer input after adding task
     setCategory('Work'); // Reset category selection
+    setDueDate('');
   };
 
   const deleteTask = (taskId) => {
@@ -123,7 +126,8 @@ function TodoList({ tasks, setTasks }) {
           filteredTasks.map((task) => (
             <div
               key={task.id}
-              className={`task-item ${task.isCompleted ? 'task-completed' : ''}`}
+              className={`task-item ${task.isCompleted ? 'task-completed' : ''} ${
+                isTaskOverdue(task.dueDate) ? 'overdue' : ''}`}
             >
               <div className="task-info">
                 {/* Colored category tag */}
@@ -139,6 +143,12 @@ function TodoList({ tasks, setTasks }) {
                 <span>{task.text}</span>
                 {task.timer > 0 && (
                   <span className="task-timer">⏲ {task.timer} min</span>
+                )}
+                 {/* Display due date */}
+                 {task.dueDate && (
+                  <span className="due-date">
+                    Due: {new Date(task.dueDate).toLocaleDateString()}
+                  </span>
                 )}
               </div>
               <div className="task-controls">
@@ -193,13 +203,24 @@ function TodoList({ tasks, setTasks }) {
           <option value="Urgent">Urgent</option>
         </select>
 
-        <button onClick={addTask} className="add-task-btn">
-          <FiPlusCircle size={40} />
-        </button>
-      </div>
+         {/* Date Picker for Due Date */}
+         <input
+    type="date"
+    value={dueDate}
+    onChange={(e) => setDueDate(e.target.value)}
+    className="date-picker"
+  />  {/* <-- Correctly closed the input tag with a self-closing slash here */}
+
+  <button onClick={addTask} className="add-task-btn">
+    <FiPlusCircle size={40} />
+  </button>
+</div>
     </div>
   );
 }
+
+// Make sure this closing brace is present here to properly close the TodoList component
+
 
 // Circular Menu Component for Navigation
 function CircularMenu() {
