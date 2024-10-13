@@ -136,24 +136,40 @@ body {
 }
 
 /* Add task section */
-.add-task-section select {
-  padding: 10px;
-  border-radius: 25px;
-  border: 1px solid #3498db;
-  background-color: white;
-  color: #2c3e50;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 10px;
+.add-task-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: 20px;
+}
+
+/* Task input field */
+.add-task-section input[type="text"] {
+  border: none;
   outline: none;
-  transition: border 0.3s ease;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
 }
 
-.add-task-section select:hover {
-  border-color: #2980b9;
+/* Timer input field */
+.add-task-section input[type="number"] {
+  border: none;
+  background-color: #fff;
+  padding: 10px;
+  width: 100px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #34495e;
+  outline: none;
 }
 
-/* Add Task Button Styling */
+/* Add task button */
 .add-task-btn {
   background-color: #3498db;
   color: white;
@@ -161,14 +177,6 @@ body {
   padding: 16px;
   border-radius: 50%;
   cursor: pointer;
-  margin-left: 10px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.add-task-btn:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
 }
 
 /* Circular Menu */
@@ -272,7 +280,6 @@ body {
 .completed-task-list a:hover {
   text-decoration: underline;
 }
-
 .filter-section {
   margin-bottom: 20px;
   display: flex;
