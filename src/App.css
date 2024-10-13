@@ -119,6 +119,10 @@ body {
 .task-completed {
   animation: taskDone 0.6s ease forwards;
 }
+.task-completed .task-info span {
+  text-decoration: line-through;
+  color: #95a5a6; /* Lighter color to indicate completion */
+}
 
 @keyframes taskDone {
   0% {
