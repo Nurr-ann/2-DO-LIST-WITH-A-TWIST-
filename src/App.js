@@ -6,6 +6,8 @@ import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import WelcomePage from './WelcomePage'; 
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -240,9 +242,9 @@ function CircularMenu() {
         <FiMenu size={40} />
       </button>
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
+      <Link to="/welcome" className="menu-option">Welcome Page</Link>
         <Link to="/" className="menu-option">To-Do List</Link>
         <Link to="/advice" className="menu-option">Advice</Link>
-        <Link to="/welcome" className="menu-option">Welcome Page</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
       </nav>
     </div>

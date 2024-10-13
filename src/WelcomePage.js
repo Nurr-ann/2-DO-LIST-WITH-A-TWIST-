@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
-import './WelcomePage.css'; // Add this to import the CSS styles
+import { useNavigate } from 'react-router-dom';
+import './WelcomePage.css'; 
 
 function WelcomePage() {
   const [name, setName] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowMessage(true); // Show the welcome message
+  const handleSubmit = () => {
+    if (name.trim()) {
+      navigate('/');  // Navigates to the Todo List page
+    }
   };
 
   return (
     <div className="welcome-container">
-      <h1 className={`welcome-heading ${showMessage ? 'slide-up' : ''}`}>
-        Welcome {showMessage && name ? name : 'Guest'}!
-      </h1>
-
-      {!showMessage && (
-        <form className="name-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your name"
-            className="name-input"
-          />
-          <button type="submit" className="submit-btn">Submit</button>
-        </form>
-      )}
+      <div className="welcome-box">
+        <h1>Welcome!</h1>
+        <p>Let me know your name</p>
+        <input 
+          type="text" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          placeholder="Enter your name" 
+          className="name-input"
+        />
+        <button onClick={handleSubmit} className="start-btn">
+          Go to Todo List
+        </button>
+      </div>
     </div>
   );
 }
 
 export default WelcomePage;
+

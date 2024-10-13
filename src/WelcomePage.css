@@ -1,84 +1,134 @@
-/* Center the page content */
+/* Full-screen container */
+.welcome-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+}
+
+/* Centered box for the welcome message */
+.welcome-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading and input styles */
+.welcome-box h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.welcome-box p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.name-input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.start-btn {
+  background-color: #74ebd5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: #ACB6E5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Full-screen container */
 .welcome-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  }
+  
+  /* Centered box for the welcome message */
+  .welcome-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 350px;
+    animation: fadeIn 1s ease-in-out;
   }
   
-  .welcome-heading {
-    font-size: 2.5rem;
-    color: white;
-    font-family: 'Poppins', sans-serif;
+  /* Heading and input styles */
+  .welcome-box h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .welcome-box p {
     margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-  }
-  
-  /* Slide up effect for welcome message */
-  .slide-up {
-    animation: slideUp 1s forwards;
-  }
-  
-  @keyframes slideUp {
-    0% {
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Form styling */
-  .name-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    font-size: 1.1rem;
+    color: #555;
   }
   
   .name-input {
     padding: 10px;
-    border: none;
-    border-radius: 25px;
-    width: 250px;
-    font-size: 1.1rem;
-    text-align: center;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
   }
   
-  .name-input:focus {
-    outline: none;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .submit-btn {
-    padding: 10px 20px;
-    font-size: 1.1rem;
+  .start-btn {
+    background-color: #74ebd5;
     color: white;
-    background-color: #4facfe;
+    padding: 10px 20px;
     border: none;
     border-radius: 25px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
   }
   
-  .submit-btn:hover {
-    background-color: #00f2fe;
-    transform: scale(1.05);
+  .start-btn:hover {
+    background-color: #ACB6E5;
   }
   
   @keyframes fadeIn {
-    0% {
+    from {
       opacity: 0;
+      transform: translateY(-20px);
     }
-    100% {
+    to {
       opacity: 1;
+      transform: translateY(0);
     }
   }
+  
   
