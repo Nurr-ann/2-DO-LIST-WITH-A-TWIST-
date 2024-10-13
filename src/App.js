@@ -5,6 +5,7 @@ import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import WelcomePage from './WelcomePage'; 
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -241,6 +242,7 @@ function CircularMenu() {
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
         <Link to="/" className="menu-option">To-Do List</Link>
         <Link to="/advice" className="menu-option">Advice</Link>
+        <Link to="/welcome" className="menu-option">Welcome Page</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
       </nav>
     </div>
@@ -257,6 +259,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
