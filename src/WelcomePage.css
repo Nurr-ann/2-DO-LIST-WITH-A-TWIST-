@@ -70,7 +70,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #2351da 0%, #ACB6E5 100%);
+    background: linear-gradient(135deg, #bbbec7 0%, #ACB6E5 100%);
   }
   
   /* Centered box for the welcome message */
@@ -106,7 +106,7 @@
   }
   
   .start-btn {
-    background-color: #9a9da6;
+    background-color: #3e69ec;
     color: white;
     padding: 10px 20px;
     border: none;
