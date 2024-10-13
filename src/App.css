@@ -275,6 +275,10 @@ body {
   text-align: center;
   width: 100%;
 }
+.completed-tasks-page {
+  background-color: pink !important;
+}
+
 
 .completed-task-list a:hover {
   text-decoration: underline;
