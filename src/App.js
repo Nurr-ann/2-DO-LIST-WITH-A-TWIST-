@@ -14,6 +14,13 @@ function TodoList({ tasks, setTasks }) {
   const [filter, setFilter] = useState('All'); // State for filtering tasks by category
   const [dueDate, setDueDate] = useState('');
 
+  const isTaskOverdue = (dueDate) => {
+    if (!dueDate) return false;
+    const today = new Date();
+    const taskDueDate = new Date(dueDate);
+    return taskDueDate.setHours(23, 59, 59, 999) < today;
+  };
+  
   const addTask = () => {
     if (newTask.trim() === '') return;
     const task = {
