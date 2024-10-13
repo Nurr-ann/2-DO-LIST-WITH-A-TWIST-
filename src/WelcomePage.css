@@ -75,7 +75,7 @@
   
   /* Centered box for the welcome message */
   .welcome-box {
-    background-color: white;
+    background-color: #006adb;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -106,7 +106,7 @@
   }
   
   .start-btn {
-    background-color: #74ebd5;
+    background-color: #3f6fe9;
     color: white;
     padding: 10px 20px;
     border: none;
