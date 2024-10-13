@@ -65,7 +65,13 @@
   }
 }
 /* Full-screen container */
-
+.welcome-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #bbbec7 0%, #ACB6E5 100%);
+  }
   
   /* Centered box for the welcome message */
   .welcome-box {
