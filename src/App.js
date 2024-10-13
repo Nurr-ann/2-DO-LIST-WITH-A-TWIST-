@@ -127,7 +127,8 @@ function TodoList({ tasks, setTasks }) {
             <div
               key={task.id}
               className={`task-item ${task.isCompleted ? 'task-completed' : ''} ${
-                isTaskOverdue(task.dueDate) ? 'overdue' : ''}`}
+                isTaskOverdue(task.dueDate) ? 'overdue' : ''
+              }`}
             >
               <div className="task-info">
                 {/* Colored category tag */}
@@ -144,8 +145,9 @@ function TodoList({ tasks, setTasks }) {
                 {task.timer > 0 && (
                   <span className="task-timer">⏲ {task.timer} min</span>
                 )}
-                 {/* Display due date */}
-                 {task.dueDate && (
+                
+                {/* Display due date */}
+                {task.dueDate && (
                   <span className="due-date">
                     Due: {new Date(task.dueDate).toLocaleDateString()}
                   </span>
@@ -203,25 +205,21 @@ function TodoList({ tasks, setTasks }) {
           <option value="Urgent">Urgent</option>
         </select>
 
-         {/* Date Picker for Due Date */}
-         <input
-    type="date"
-    value={dueDate}
-    onChange={(e) => setDueDate(e.target.value)}
-    className="date-picker"
-  />  {/* <-- Correctly closed the input tag with a self-closing slash here */}
-
-  <button onClick={addTask} className="add-task-btn">
-    <FiPlusCircle size={40} />
-  </button>
-</div>
+        {/* Date Picker for Due Date */}
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          className="date-picker"
+        />
+        
+        <button onClick={addTask} className="add-task-btn">
+          <FiPlusCircle size={40} />
+        </button>
+      </div>
     </div>
   );
 }
-
-// Make sure this closing brace is present here to properly close the TodoList component
-
-
 // Circular Menu Component for Navigation
 function CircularMenu() {
   const [open, setOpen] = useState(false);
