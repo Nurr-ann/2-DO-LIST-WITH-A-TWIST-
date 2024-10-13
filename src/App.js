@@ -51,27 +51,29 @@ function TodoList({ tasks, setTasks }) {
       tasks.map((task) => {
         if (task.id === taskId) {
           const newPriority =
-            task.priority === 'low' ? 'medium' : task.priority === 'medium' ? 'high' : 'high';
+            task.priority === 'low' ? 'medium' :
+            task.priority === 'medium' ? 'high' : 'low'; // Loop back to low after high
           return { ...task, priority: newPriority };
         }
         return task;
       })
     );
   };
-
+  
   const decreasePriority = (taskId) => {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
           const newPriority =
-            task.priority === 'high' ? 'medium' : task.priority === 'medium' ? 'low' : 'low';
+            task.priority === 'high' ? 'medium' :
+            task.priority === 'medium' ? 'low' : 'high'; // Loop back to high after low
           return { ...task, priority: newPriority };
         }
         return task;
       })
     );
   };
-
+  
   return (
     <div className="app-container">
       <header className="app-header">
