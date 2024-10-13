@@ -307,14 +307,17 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .sort-btn:hover {
   background-color: #2980b9;
+  transform: scale(1.05);
 }
+
 
 /* Filter Dropdown */
 .filter-section {
