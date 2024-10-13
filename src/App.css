@@ -262,3 +262,50 @@ body {
 .completed-task-list a:hover {
   text-decoration: underline;
 }
+/* Category Tags */
+.category-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: white;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+
+.category-tag.work {
+  background-color: #3498db; /* Blue for Work */
+}
+
+.category-tag.personal {
+  background-color: #2ecc71; /* Green for Personal */
+}
+
+.category-tag.urgent {
+  background-color: #e74c3c; /* Red for Urgent */
+}
+
+/* Sort Button */
+.sort-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.sort-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Filter Dropdown */
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
