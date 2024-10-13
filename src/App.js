@@ -86,7 +86,7 @@ function TodoList({ tasks, setTasks }) {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>HELLO, LET'S CREATE YOUR TO-DO LIST TOGETHER</h1>
+        <h1>ADD YOUR AND EDIT YOUR TASKS</h1>
       </header>
 
       <button onClick={sortByPriority} className="sort-btn">
