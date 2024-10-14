@@ -94,7 +94,7 @@ body {
 
 .task-controls button {
   background: none;
-  border: none;
+  border: 2px #0056b3;
   cursor: pointer;
   color: #3498db;
   font-size: 18px;
