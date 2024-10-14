@@ -9,7 +9,6 @@ import WelcomePage from './WelcomePage';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
@@ -24,14 +23,6 @@ function TodoList({ tasks, setTasks }) {
     const taskDueDate = new Date(dueDate);
     return taskDueDate.setHours(23, 59, 59, 999) < today;
   };
-
-  const handleTimerStart = (taskId) => {
-  const taskElement = document.getElementById(`task-${taskId}`);
-  const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
-  
-  progressBarInner.classList.add('animated'); // Start the animation
-};
-
   
   const addTask = () => {
     if (newTask.trim() === '') return;
@@ -273,27 +264,10 @@ function App() {
         <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
+          
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
-    </Router>
-  );
-}
-function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate('/welcome'); // Automatically navigate to welcome page on app load
-  }, [navigate]);
-
-  return (
-    <Router>
-      <Routes>
-        <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
-        <Route path="/advice" element={<Advice />} />
-        <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
-      </Routes>
     </Router>
   );
 }
