@@ -190,12 +190,7 @@ function TodoList({ tasks, setTasks }) {
           <div>No tasks available for this category</div>
         )}
       </div>
-      <div className="task-progress-bar">
-  <div
-    className="task-progress-bar-inner"
-    style={{ width: `${task.progress}%` }}
-  ></div>
-</div>
+      
 
       <div className="add-task-section">
         <input
