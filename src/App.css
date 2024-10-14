@@ -106,6 +106,33 @@ body {
   transform: scale(1.1);
 }
 
+.task-progress-bar {
+  height: 8px;
+  width: 100%;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.task-progress-bar-inner {
+  height: 100%;
+  width: 0;
+  background-color: #3498db;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+/* Animation when task is progressing */
+.task-progress-bar-inner.animated {
+  animation: progressBarAnimation 3s forwards;
+}
+
+@keyframes progressBarAnimation {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
 .complete-btn {
   color: #2ecc71;
   font-size: 24px;
@@ -335,21 +362,25 @@ body {
 }
 
 /* Sort Button */
+/* Sort Button */
 .sort-btn {
-  padding: 10px 20px;
-  font-size: 16px;
   background-color: #3498db;
   color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1.1rem;
   border: none;
-  border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sort-btn:hover {
-  background-color: #2980b9;
+  background-color: #00f2fe;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
+
 
 /* Filter Dropdown */
 .filter-section {
@@ -427,10 +458,16 @@ body {
 /* Timer input styling */
 .timer-input {
   padding: 10px;
-  font-size: 16px;
-  width: 50%;
+  font-size: 1rem;
+  width: 150px;
   border-radius: 25px;
-  border: 1px solid #3498db;
-  outline: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #3498db;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.timer-input:focus {
+  border-color: #00f2fe;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
