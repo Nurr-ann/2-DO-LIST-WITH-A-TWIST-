@@ -348,7 +348,7 @@ body {
   display: inline-block;
   padding: 5px 10px;
   font-size: 12px;
-  color: white;
+  color: rgb(25, 90, 188);
   border-radius: 12px;
   margin-right: 10px;
 }
@@ -372,7 +372,7 @@ body {
   border-radius: 25px;
   border: 1px solid #3498db;
   outline: none;
-  box-shadow: 0px 4px 8px #0b6dd71a;
+  box-shadow: 0px 4px 8px rgba(4, 94, 190, 0.1);
   cursor: pointer;
 }
 
