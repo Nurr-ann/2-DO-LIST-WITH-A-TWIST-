@@ -6,8 +6,7 @@ import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import WelcomePage from './WelcomePage'; 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
