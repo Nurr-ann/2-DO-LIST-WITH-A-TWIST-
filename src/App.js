@@ -55,6 +55,13 @@ function TodoList({ tasks, setTasks }) {
     );
   };
 
+  const handleTimerStart = (taskId) => {
+    const taskElement = document.getElementById(`task-${taskId}`);
+    const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
+    
+    progressBarInner.classList.add('animated'); // Start the animation
+  };
+
   const handleProgressChange = (taskId, value) => {
     setTasks(
       tasks.map((task) =>
