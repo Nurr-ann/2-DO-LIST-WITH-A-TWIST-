@@ -200,11 +200,13 @@ function TodoList({ tasks, setTasks }) {
     placeholder="Add Task"
     className="task-input"
   />
-  <input
-    type="text"
-    value={timer === 0 ? "Timer" : timer}
-    onChange={(e) => setTimer(e.target.value === "Timer" ? 0 : e.target.value)}
-    className="timer-input"
+  < input
+          type="number"
+          value={timer}
+          onChange={(e) => setTimer(e.target.value)}
+          placeholder="Timer (min)"
+          min="0"
+
   />
   <select
     value={category}
