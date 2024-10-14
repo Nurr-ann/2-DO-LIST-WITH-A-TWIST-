@@ -197,7 +197,7 @@ body {
 
 /* Task input field */
 .add-task-section input[type="text"] {
-  border: none;
+  border: #34495e ;
   outline: none;
   background-color: transparent;
   width: 100%;
