@@ -26,12 +26,12 @@ function TodoList({ tasks, setTasks }) {
   };
 
   const handleTimerStart = (taskId) => {
-    const taskElement = document.getElementById(`task-${taskId}`);
-    const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
-    
-    progressBarInner.classList.add('animated'); // Start the animation
-  };
+  const taskElement = document.getElementById(`task-${taskId}`);
+  const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
   
+  progressBarInner.classList.add('animated'); // Start the animation
+};
+
   
   const addTask = () => {
     if (newTask.trim() === '') return;
@@ -279,13 +279,12 @@ function App() {
     </Router>
   );
 }
-const handleTimerStart = (taskId) => {
-  const taskElement = document.getElementById(`task-${taskId}`);
-  const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
-  
-  progressBarInner.classList.add('animated'); // Start the animation
-};
+function App() {
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    navigate('/welcome'); // Automatically navigate to welcome page on app load
+  }, [navigate]);
 
   return (
     <Router>
@@ -297,6 +296,6 @@ const handleTimerStart = (taskId) => {
       </Routes>
     </Router>
   );
-
+}
 
 export default App;
