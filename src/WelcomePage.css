@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #4488ed 0%, #054dba 100%);
+    background: linear-gradient(135deg, #0c63af 0%, #054dba 100%);
   }
   
   /* Centered box for the welcome message */
@@ -40,7 +40,7 @@
   }
   
   .start-btn {
-    background-color: #4488ed;
+    background-color: #0c63af;
     color: white;
     padding: 10px 20px;
     border: none;
