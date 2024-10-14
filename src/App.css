@@ -1,5 +1,3 @@
-/* App.css */
-
 /* General body styling */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -57,8 +55,7 @@ body {
   background-color: red;
 }
 
-
-/* Sort Button */
+/* Enhanced Sort Button */
 .sort-btn {
   background-color: #3498db;
   color: white;
@@ -97,6 +94,7 @@ body {
   transform: scale(1.1);
 }
 
+/* Enhanced Task progress bar */
 .task-progress-bar {
   height: 8px;
   width: 100%;
@@ -114,16 +112,6 @@ body {
   transition: width 0.4s ease;
 }
 
-/* Animation when task is progressing */
-.task-progress-bar-inner.animated {
-  animation: progressBarAnimation 3s forwards;
-}
-
-@keyframes progressBarAnimation {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
 .complete-btn {
   color: #2ecc71;
   font-size: 24px;
@@ -133,26 +121,7 @@ body {
   color: #e74c3c;
 }
 
-/* Task completion animation */
-.task-completed {
-  animation: taskDone 0.6s ease forwards;
-}
-.task-completed .task-info span {
-  text-decoration: line-through;
-  color: #95a5a6; /* Lighter color to indicate completion */
-}
-
-@keyframes taskDone {
-  0% {
-    background-color: #2ecc71;
-    transform: scale(1);
-  }
-  100% {
-    background-color: #ecf0f1;
-    transform: scale(1.05);
-  }
-}
-
+/* Task input */
 .task-input {
   padding: 10px;
   font-size: 16px;
@@ -165,48 +134,21 @@ body {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.task-options {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-/* Add task section */
-.add-task-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #ecf0f1;
-  padding: 10px 20px;
-  border-radius: 30px;
-  margin-top: 20px;
-}
-
-/* Task input field */
-.add-task-section input[type="text"] {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  width: 100%;
+/* Enhanced Timer input styling */
+.timer-input {
   padding: 10px;
-  font-size: 18px;
+  font-size: 1rem;
+  width: 150px;
+  border-radius: 25px;
+  border: 2px solid #3498db;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Timer input field */
-.add-task-section input[type="number"] {
-  border: none;
-  background-color: #fff;
-  padding: 10px;
-  width: 100px;
-  margin-left: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #34495e;
-  outline: none;
+.timer-input:focus {
+  border-color: #00f2fe;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Add task button */
@@ -217,6 +159,11 @@ body {
   padding: 16px;
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #2980b9;
 }
 
 /* Circular Menu */
@@ -240,6 +187,7 @@ body {
 
 .menu-btn:hover {
   background-color: #0056b3;
+  transform: scale(1.1);
 }
 
 .menu-options {
@@ -316,44 +264,9 @@ body {
   width: 100%;
 }
 
-
 .completed-task-list a:hover {
   text-decoration: underline;
 }
-.category-tag {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 12px;
-  color: white;
-  border-radius: 12px;
-  margin-right: 10px;
-}
-
-.category-tag.work {
-  background-color: #3498db; /* Blue for Work */
-}
-
-.category-tag.personal {
-  background-color: #2ecc71; /* Green for Personal */
-}
-
-.category-tag.urgent {
-  background-color: #e74c3c; /* Red for Urgent */
-}
-
-.category-dropdown {
-  padding: 10px;
-  font-size: 16px;
-  width: 50%;
-  border-radius: 25px;
-  border: 1px solid #3498db;
-  outline: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-/* Sort Button */
-
 
 /* Filter Dropdown */
 .filter-section {
@@ -412,35 +325,4 @@ body {
 
 .date-picker:hover {
   border-color: #2980b9;
-}
-
-/* Overdue task styling */
-.task-item.overdue {
-  background-color: #ffebee;
-  border-left: 5px solid #e74c3c; /* Red border for overdue */
-}
-.timer-category-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 400px;
-}
-
-/* Timer input styling */
-.timer-input {
-  padding: 10px;
-  font-size: 1rem;
-  width: 150px;
-  border-radius: 25px;
-  border: 2px solid #3498db;
-  transition: all 0.3s ease;
-  text-align: center;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.timer-input:focus {
-  border-color: #00f2fe;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
