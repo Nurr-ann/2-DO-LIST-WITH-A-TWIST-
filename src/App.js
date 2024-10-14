@@ -254,14 +254,19 @@ function CircularMenu() {
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  useEffect(() => {
+    navigate('/welcome'); // Automatically navigate to welcome page on app load
+  }, [navigate]);
+
   return (
     <Router>
       <div className="app">
         <CircularMenu />
         <Routes>
+        <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
-          <Route path="/welcome" element={<WelcomePage />} />
+          
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
