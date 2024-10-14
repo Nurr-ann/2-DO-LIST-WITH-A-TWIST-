@@ -205,7 +205,7 @@ function TodoList({ tasks, setTasks }) {
           value={timer}
           onChange={(e) => setTimer(e.target.value)}
           placeholder="Timer (min)"
-          min="0"
+          min=" "
         />
         {/* Category Dropdown */}
         <select
