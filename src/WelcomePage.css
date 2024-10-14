@@ -1,11 +1,4 @@
 /* Full-screen container */
-.welcome-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #0c63af 0%, #054dba 100%);
-  }
   
   /* Centered box for the welcome message */
   .welcome-box {
