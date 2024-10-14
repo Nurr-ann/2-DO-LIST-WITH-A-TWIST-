@@ -6,8 +6,6 @@ import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import WelcomePage from './WelcomePage'; 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -55,13 +53,7 @@ function TodoList({ tasks, setTasks }) {
     );
   };
 
-  const handleTimerStart = (taskId) => {
-    const taskElement = document.getElementById(`task-${taskId}`);
-    const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
-    
-    progressBarInner.classList.add('animated'); // Start the animation
-  };
-
+  
   const handleProgressChange = (taskId, value) => {
     setTasks(
       tasks.map((task) =>
@@ -198,6 +190,12 @@ function TodoList({ tasks, setTasks }) {
           <div>No tasks available for this category</div>
         )}
       </div>
+      <div className="task-progress-bar">
+  <div
+    className="task-progress-bar-inner"
+    style={{ width: `${task.progress}%` }}
+  ></div>
+</div>
 
       <div className="add-task-section">
         <input
