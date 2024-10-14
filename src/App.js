@@ -53,20 +53,6 @@ function TodoList({ tasks, setTasks }) {
     );
   };
 
-  const handleTimerStart = (taskId) => {
-    let intervalId = setInterval(() => {
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === taskId && task.progress < 100
-            ? { ...task, progress: task.progress + 1 }
-            : task
-        )
-      );
-    }, 1000); // Increments progress every second
-
-    // Stop timer after reaching 100% progress
-    setTimeout(() => clearInterval(intervalId), 100000); // Simulates a 100-second task
-  };
 
   const handleProgressChange = (taskId, value) => {
     setTasks(
@@ -219,13 +205,14 @@ function TodoList({ tasks, setTasks }) {
           placeholder="Add Task"
           className="task-input"
         />
-        <input
-          type="number"
-          value={timer}
-          onChange={(e) => setTimer(e.target.value)}
-          placeholder="Timer (min)"
-          min="0"
-        />
+       <input
+  type="text"
+  value={timer === 0 ? "Timer" : timer}
+  onChange={(e) => setTimer(e.target.value === "Timer" ? 0 : e.target.value)}
+  placeholder="Timer"
+  className="timer-input"
+/>
+
         {/* Category Dropdown */}
         <select
           value={category}
