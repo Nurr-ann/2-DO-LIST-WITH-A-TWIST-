@@ -188,6 +188,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: #34495e ;
   flex-direction: column;
   background-color: #ecf0f1;
   padding: 20px;
