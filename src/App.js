@@ -114,18 +114,19 @@ function TodoList({ tasks, setTasks }) {
 
       {/* Filter Dropdown */}
       <div className="filter-section">
-        <label htmlFor="filter">Filter by Category:</label>
-        <select
-          id="filter"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="All">All</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Urgent">Urgent</option>
-        </select>
-      </div>
+  <label htmlFor="filter">Filter by Category:</label>
+  <select
+    id="filter"
+    value={filter}
+    onChange={(e) => setFilter(e.target.value)}
+    className="sort-select"
+  >
+    <option value="All">All</option>
+    <option value="Work">Work</option>
+    <option value="Personal">Personal</option>
+    <option value="Urgent">Urgent</option>
+  </select>
+</div>
 
       <button onClick={sortByPriority} className="sort-btn">
         Sort by Priority
