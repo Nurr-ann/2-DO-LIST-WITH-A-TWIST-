@@ -193,42 +193,38 @@ function TodoList({ tasks, setTasks }) {
       
 
       <div className="add-task-section">
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Add Task"
-           className="task-input"
-        />
-        <input
-          type="number"
-          value={timer}
-          onChange={(e) => setTimer(e.target.value)}
-          placeholder="Timer (min)"
-          min="0"
-        />
-        {/* Category Dropdown */}
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Urgent">Urgent</option>
-        </select>
-
-        {/* Date Picker for Due Date */}
-        <input
-          type="date"
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-          className="date-picker"
-        />
-        
-        <button onClick={addTask} className="add-task-btn">
-          <FiPlusCircle size={40} />
-        </button>
-      </div>
+  <input
+    type="text"
+    value={newTask}
+    onChange={(e) => setNewTask(e.target.value)}
+    placeholder="Add Task"
+    className="task-input"
+  />
+  <input
+    type="text"
+    value={timer === 0 ? "Timer" : timer}
+    onChange={(e) => setTimer(e.target.value === "Timer" ? 0 : e.target.value)}
+    className="timer-input"
+  />
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+  >
+    <option value="Work">Work</option>
+    <option value="Personal">Personal</option>
+    <option value="Urgent">Urgent</option>
+  </select>
+  <input
+    type="date"
+    value={dueDate}
+    onChange={(e) => setDueDate(e.target.value)}
+    className="date-picker"
+  />
+  
+  <button onClick={addTask} className="add-task-btn">
+    <FiPlusCircle size={40} />
+  </button>
+</div>
     </div>
   );
 }

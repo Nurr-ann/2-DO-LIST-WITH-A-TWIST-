@@ -190,8 +190,8 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: #ecf0f1;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 20px;
+  border-radius: 20px;
   margin-top: 20px;
 }
 
@@ -223,9 +223,21 @@ body {
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 16px;
+  padding: 16px 24px;
   border-radius: 50%;
   cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 15px; /* Add spacing above the button */
+}
+
+.add-task-btn:hover {
+  background-color: #00bfff;
+  transform: scale(1.1);
+}
+
+.add-task-btn:active {
+  transform: scale(0.9);
 }
 
 /* Circular Menu */
