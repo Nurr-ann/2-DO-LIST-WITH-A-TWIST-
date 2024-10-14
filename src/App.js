@@ -279,12 +279,13 @@ function App() {
     </Router>
   );
 }
-function App() {
-  const navigate = useNavigate();
+const handleTimerStart = (taskId) => {
+  const taskElement = document.getElementById(`task-${taskId}`);
+  const progressBarInner = taskElement.querySelector('.task-progress-bar-inner');
+  
+  progressBarInner.classList.add('animated'); // Start the animation
+};
 
-  useEffect(() => {
-    navigate('/welcome'); // Automatically navigate to welcome page on app load
-  }, [navigate]);
 
   return (
     <Router>
@@ -296,6 +297,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+
 
 export default App;
