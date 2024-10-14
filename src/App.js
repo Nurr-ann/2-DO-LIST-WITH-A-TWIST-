@@ -209,7 +209,7 @@ function TodoList({ tasks, setTasks }) {
   type="text"
   value={timer === 0 ? "Timer" : timer}
   onChange={(e) => setTimer(e.target.value === "Timer" ? 0 : e.target.value)}
-  placeholder="Timer"
+
   className="timer-input"
 />
 
