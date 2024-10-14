@@ -254,9 +254,7 @@ function CircularMenu() {
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    navigate('/welcome'); // Automatically navigate to welcome page on app load
-  }, [navigate]);
+ 
 
   return (
     <Router>
