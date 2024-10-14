@@ -378,6 +378,23 @@ body {
 
 /* Sort Button */
 /* Sort Button */
+.sort-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  border: 1px solid #3498db;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sort-btn:hover {
+  background-color: #00f2fe;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
 
 
 /* Filter Dropdown */
