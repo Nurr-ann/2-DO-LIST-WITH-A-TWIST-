@@ -463,26 +463,23 @@ body {
 }
 .timer-category-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 10px;
-  width: 100%;
-  max-width: 400px;
+  align-items: center;
 }
 
-
-.timer-input {
+.timer-input, .category-dropdown {
+  border: 2px solid #3498db;
   padding: 10px;
-  font-size: 1rem;
-  width: 150px;
   border-radius: 25px;
-  border: 2px solid #3191d1;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  text-align: center;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.timer-input:focus {
+.timer-input:hover, .category-dropdown:hover {
+  border-color: #00bfff; /* Change color on hover */
+}
+
+.timer-input:focus, .category-dropdown:focus {
   border-color: #00f2fe;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Add focus shadow */
 }
