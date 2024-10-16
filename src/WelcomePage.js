@@ -14,7 +14,7 @@ function WelcomePage() {
   };
 
   const goToTodoList = () => {
-    navigate('/');  // Navigate to the Todo List page
+    navigate('/todo');  // Navigate to the To-Do List page
   };
 
   return (

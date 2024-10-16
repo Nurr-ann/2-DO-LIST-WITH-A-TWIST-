@@ -252,15 +252,20 @@ function CircularMenu() {
 }
 
 function App() {
-  const [tasks, setTasks] = useState([]);  
+  const [tasks, setTasks] = useState([]);  // State to manage tasks
 
   return (
     <Router>
       <div className="app">
         <CircularMenu />
         <Routes>
+          {/* Route for the Welcome Page */}
           <Route path="/" element={<WelcomePage />} />
+          
+          {/* Route for the To-Do List Page */}
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+          
+          {/* Other Routes */}
           <Route path="/advice" element={<Advice />} />
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
