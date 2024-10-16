@@ -6,6 +6,8 @@ import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'; // Added Navigate
+
 
 
 // To-Do List component
@@ -242,8 +244,8 @@ function CircularMenu() {
         <FiMenu size={40} />
       </button>
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
-      <Link to="/welcome" className="menu-option">Welcome Page</Link>
-        <Link to="/" className="menu-option">To-Do List</Link>
+        <Link to="/welcome" className="menu-option">Welcome Page</Link>
+        <Link to="/todo" className="menu-option">To-Do List</Link> {/* Changed the link from "/" to "/todo" */}
         <Link to="/advice" className="menu-option">Advice</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
       </nav>
@@ -261,11 +263,11 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-        <Route path="/" element={<Navigate to="/welcome" />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+          {/* Redirect root "/" to welcome page */}
+          <Route path="/" element={<Navigate to="/welcome" />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} /> {/* Changed the path for the to-do list */}
           <Route path="/advice" element={<Advice />} />
-          
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
