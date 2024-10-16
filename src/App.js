@@ -272,17 +272,6 @@ function App() {
   );
 }
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        {/* Default route to the Welcome page */}
-        <Route exact path="/" component={WelcomePage} />
-        <Route path="/todo" component={TodoList} />
-      </Switch>
-    </Router>
-  );
-}
 
 
 export default App;
