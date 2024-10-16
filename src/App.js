@@ -261,6 +261,7 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
+        <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
