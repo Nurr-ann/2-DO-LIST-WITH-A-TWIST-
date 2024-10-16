@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import WelcomePage from './WelcomePage'; 
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'; // Ensure Navigate is imported
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
 import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import WelcomePage from './WelcomePage'; 
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -114,19 +114,18 @@ function TodoList({ tasks, setTasks }) {
 
       {/* Filter Dropdown */}
       <div className="filter-section">
-  <label htmlFor="filter">Filter by Category:</label>
-  <select
-    id="filter"
-    value={filter}
-    onChange={(e) => setFilter(e.target.value)}
-    className="sort-select"
-  >
-    <option value="All">All</option>
-    <option value="Work">Work</option>
-    <option value="Personal">Personal</option>
-    <option value="Urgent">Urgent</option>
-  </select>
-</div>
+        <label htmlFor="filter">Filter by Category:</label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </div>
 
       <button onClick={sortByPriority} className="sort-btn">
         Sort by Priority
@@ -201,13 +200,11 @@ function TodoList({ tasks, setTasks }) {
     placeholder="Add Task"
     className="task-input"
   />
-  < input
-          type="number"
-          value={timer}
-          onChange={(e) => setTimer(e.target.value)}
-          placeholder="Timer (min)"
-          min="0"
-
+  <input
+    type="number"
+    value={timer === 0 ? "Timer" : timer}
+    onChange={(e) => setTimer(e.target.value === "Timer" ? 0 : e.target.value)}
+    className="timer-input"
   />
   <select
     value={category}
@@ -241,8 +238,8 @@ function CircularMenu() {
         <FiMenu size={40} />
       </button>
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
-        <Link to="/welcome" className="menu-option">Welcome Page</Link>
-        <Link to="/todo" className="menu-option">To-Do List</Link>
+      <Link to="/welcome" className="menu-option">Welcome Page</Link>
+        <Link to="/" className="menu-option">To-Do List</Link>
         <Link to="/advice" className="menu-option">Advice</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
       </nav>
@@ -253,20 +250,22 @@ function CircularMenu() {
 function App() {
   const [tasks, setTasks] = useState([]);
 
+ 
+
   return (
     <Router>
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Index route: Renders WelcomePage when visiting the root ("/") */}
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+        <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
+          
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
     </Router>
   );
 }
+
 export default App;
