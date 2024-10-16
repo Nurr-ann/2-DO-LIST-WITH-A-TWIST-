@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
 import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-import WelcomePage from './WelcomePage'; 
+import WelcomePage from './WelcomePage';
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
   const [timer, setTimer] = useState(0);
-  const [category, setCategory] = useState('Work'); // State for category selection
-  const [filter, setFilter] = useState('All'); // State for filtering tasks by category
+  const [category, setCategory] = useState('Work');
+  const [filter, setFilter] = useState('All');
   const [dueDate, setDueDate] = useState('');
+
+  // Save to localStorage when tasks change
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  // Load tasks from localStorage on mount
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (storedTasks) setTasks(storedTasks);
+  }, []);
 
   const isTaskOverdue = (dueDate) => {
     if (!dueDate) return false;
@@ -21,23 +32,23 @@ function TodoList({ tasks, setTasks }) {
     const taskDueDate = new Date(dueDate);
     return taskDueDate.setHours(23, 59, 59, 999) < today;
   };
-  
+
   const addTask = () => {
     if (newTask.trim() === '') return;
     const task = {
       id: Date.now(),
       text: newTask,
-      category: category, // Add category to the task
-      priority: 'low', // Default priority
+      category: category,
+      priority: 'low',
       isCompleted: false,
       progress: 0,
-      timer: timer, // Add timer to task
+      timer: timer,
       dueDate: dueDate,
     };
     setTasks([...tasks, task]);
     setNewTask('');
-    setTimer(0); // Reset timer input after adding task
-    setCategory('Work'); // Reset category selection
+    setTimer(0);
+    setCategory('Work');
     setDueDate('');
   };
 
@@ -48,16 +59,7 @@ function TodoList({ tasks, setTasks }) {
   const toggleComplete = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: !task.isCompleted, animate: true } : task
-      )
-    );
-  };
-
-  
-  const handleProgressChange = (taskId, value) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, progress: value } : task
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
       )
     );
   };
@@ -68,7 +70,7 @@ function TodoList({ tasks, setTasks }) {
         if (task.id === taskId) {
           const newPriority =
             task.priority === 'low' ? 'medium' :
-            task.priority === 'medium' ? 'high' : 'low'; // Loop back to low after high
+              task.priority === 'medium' ? 'high' : 'low';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -76,14 +78,13 @@ function TodoList({ tasks, setTasks }) {
     );
   };
 
-  
   const decreasePriority = (taskId) => {
     setTasks(
       tasks.map((task) => {
         if (task.id === taskId) {
           const newPriority =
             task.priority === 'high' ? 'medium' :
-            task.priority === 'medium' ? 'low' : 'high'; // Loop back to high after low
+              task.priority === 'medium' ? 'low' : 'high';
           return { ...task, priority: newPriority };
         }
         return task;
@@ -91,18 +92,16 @@ function TodoList({ tasks, setTasks }) {
     );
   };
 
-  // Function to sort tasks by priority: high > medium > low
   const sortByPriority = () => {
     const sortedTasks = [...tasks].sort((a, b) => {
-      const priorityOrder = { low: 3, medium: 2, high: 1 }; // Order: high first
+      const priorityOrder = { low: 3, medium: 2, high: 1 };
       return priorityOrder[a.priority] - priorityOrder[b.priority];
     });
     setTasks(sortedTasks);
   };
 
-  // Function to filter tasks by category
   const filteredTasks = tasks.filter((task) => {
-    if (filter === 'All') return true; // Show all tasks if filter is set to 'All'
+    if (filter === 'All') return true;
     return task.category === filter;
   });
 
@@ -112,21 +111,20 @@ function TodoList({ tasks, setTasks }) {
         <h1>ADD AND EDIT YOUR TASKS</h1>
       </header>
 
-      {/* Filter Dropdown */}
       <div className="filter-section">
-  <label htmlFor="filter">Filter by Category:</label>
-  <select
-    id="filter"
-    value={filter}
-    onChange={(e) => setFilter(e.target.value)}
-    className="sort-select"
-  >
-    <option value="All">All</option>
-    <option value="Work">Work</option>
-    <option value="Personal">Personal</option>
-    <option value="Urgent">Urgent</option>
-  </select>
-</div>
+        <label htmlFor="filter">Filter by Category:</label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="sort-select"
+        >
+          <option value="All">All</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </div>
 
       <button onClick={sortByPriority} className="sort-btn">
         Sort by Priority
@@ -137,27 +135,18 @@ function TodoList({ tasks, setTasks }) {
           filteredTasks.map((task) => (
             <div
               key={task.id}
-              className={`task-item ${task.isCompleted ? 'task-completed' : ''} ${
-                isTaskOverdue(task.dueDate) ? 'overdue' : ''
-              }`}
+              className={`task-item ${task.isCompleted ? 'task-completed' : ''} ${isTaskOverdue(task.dueDate) ? 'overdue' : ''}`}
             >
               <div className="task-info">
-                {/* Colored category tag */}
                 <span className={`category-tag ${task.category.toLowerCase()}`}>
                   {task.category}
                 </span>
-                {/* Circle representing priority */}
-                <span
-                  className={`priority-circle ${task.priority}`}
-                  title={`Priority: ${task.priority}`}
-                ></span>
+                <span className={`priority-circle ${task.priority}`} title={`Priority: ${task.priority}`}></span>
                 <AiOutlineClockCircle size={22} />
                 <span>{task.text}</span>
                 {task.timer > 0 && (
                   <span className="task-timer">⏲ {task.timer} min</span>
                 )}
-                
-                {/* Display due date */}
                 {task.dueDate && (
                   <span className="due-date">
                     Due: {new Date(task.dueDate).toLocaleDateString()}
@@ -168,13 +157,6 @@ function TodoList({ tasks, setTasks }) {
                 <button className="complete-btn" onClick={() => toggleComplete(task.id)}>
                   <FiCheckCircle />
                 </button>
-                <input
-                  type="range"
-                  value={task.progress}
-                  onChange={(e) => handleProgressChange(task.id, e.target.value)}
-                  min="0"
-                  max="100"
-                />
                 <button onClick={() => increasePriority(task.id)}>
                   <FiArrowUp />
                 </button>
@@ -191,46 +173,41 @@ function TodoList({ tasks, setTasks }) {
           <div>No tasks available for this category</div>
         )}
       </div>
-      
 
       <div className="add-task-section">
-  <input
-    type="text"
-    value={newTask}
-    onChange={(e) => setNewTask(e.target.value)}
-    placeholder="Add Task"
-    className="task-input"
-  />
-  < input
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Add Task"
+          className="task-input"
+        />
+        <input
           type="number"
           value={timer}
           onChange={(e) => setTimer(e.target.value)}
           placeholder="Timer (min)"
           min="0"
-
-  />
-  <select
-    value={category}
-    onChange={(e) => setCategory(e.target.value)}
-  >
-    <option value="Work">Work</option>
-    <option value="Personal">Personal</option>
-    <option value="Urgent">Urgent</option>
-  </select>
-  <input
-    type="date"
-    value={dueDate}
-    onChange={(e) => setDueDate(e.target.value)}
-    className="date-picker"
-  />
-  
-  <button onClick={addTask} className="add-task-btn">
-    <FiPlusCircle size={40} />
-  </button>
-</div>
+        />
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          className="date-picker"
+        />
+        <button onClick={addTask} className="add-task-btn">
+          <FiPlusCircle size={40} />
+        </button>
+      </div>
     </div>
   );
 }
+
 // Circular Menu Component for Navigation
 function CircularMenu() {
   const [open, setOpen] = useState(false);
@@ -241,7 +218,6 @@ function CircularMenu() {
         <FiMenu size={40} />
       </button>
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
-      <Link to="/welcome" className="menu-option">Welcome Page</Link>
         <Link to="/" className="menu-option">To-Do List</Link>
         <Link to="/advice" className="menu-option">Advice</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
@@ -252,15 +228,17 @@ function CircularMenu() {
 
 function App() {
   const [tasks, setTasks] = useState([]);
- 
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  const handleContinue = () => {
+    setShowWelcome(false);
   };
 
   return (
     <Router>
       <div className="app">
-        {/* Show WelcomePage first, and only show the rest of the app once user continues */}
         {showWelcome ? (
-          <WelcomePage onContinue={handleContinue} />  // Pass the handler to WelcomePage
+          <WelcomePage onContinue={handleContinue} />
         ) : (
           <>
             <CircularMenu />
@@ -274,6 +252,6 @@ function App() {
       </div>
     </Router>
   );
-
+}
 
 export default App;
