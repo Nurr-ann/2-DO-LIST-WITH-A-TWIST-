@@ -252,10 +252,7 @@ function CircularMenu() {
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [showWelcome, setShowWelcome] = useState(true);
-
-  const handleContinue = () => {
-    setShowWelcome(false);
+ 
   };
 
   return (
@@ -277,6 +274,6 @@ function App() {
       </div>
     </Router>
   );
-}
+
 
 export default App;
