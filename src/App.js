@@ -15,6 +15,14 @@ function TodoList({ tasks, setTasks }) {
   const [filter, setFilter] = useState('All');
   const [dueDate, setDueDate] = useState('');
 
+  // Function to check if the task's due date has passed
+  const isTaskOverdue = (dueDate) => {
+    if (!dueDate) return false;
+    const today = new Date();
+    const taskDueDate = new Date(dueDate);
+    return taskDueDate.setHours(23, 59, 59, 999) < today;
+  };
+
   // Save to localStorage when tasks change
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -230,9 +238,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {/* Always render CircularMenu */}
         <CircularMenu />
-        {/* Show WelcomePage first, and only show the rest of the app once user continues */}
         {showWelcome ? (
           <WelcomePage onContinue={handleContinue} />
         ) : (
@@ -248,3 +254,4 @@ function App() {
 }
 
 export default App;
+
