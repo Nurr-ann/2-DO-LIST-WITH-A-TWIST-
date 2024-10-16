@@ -252,20 +252,28 @@ function CircularMenu() {
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [showWelcome, setShowWelcome] = useState(true);
 
- 
+  const handleContinue = () => {
+    setShowWelcome(false);
+  };
 
   return (
     <Router>
       <div className="app">
-        <CircularMenu />
-        <Routes>
-        <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
-          <Route path="/advice" element={<Advice />} />
-          
-          <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
-        </Routes>
+        {/* Show WelcomePage first, and only show the rest of the app once user continues */}
+        {showWelcome ? (
+          <WelcomePage onContinue={handleContinue} />  // Pass the handler to WelcomePage
+        ) : (
+          <>
+            <CircularMenu />
+            <Routes>
+              <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+              <Route path="/advice" element={<Advice />} />
+              <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
+            </Routes>
+          </>
+        )}
       </div>
     </Router>
   );
