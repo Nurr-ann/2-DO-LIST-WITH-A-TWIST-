@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Advice from './Advice';
-import CompletedTasks from './CompletedTasks';
-import './App.css';
-import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
-import { AiOutlineClockCircle } from 'react-icons/ai';
-import WelcomePage from './WelcomePage'; 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import WelcomePage from './WelcomePage';  
+import TodoList from './TodoList';        
+import Advice from './Advice';            
+import CompletedTasks from './CompletedTasks';  
+import './App.css';                       
+import { FiMenu } from 'react-icons/fi';
+
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -251,20 +252,16 @@ function CircularMenu() {
 }
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);  
 
   return (
     <Router>
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Route for WelcomePage */}
           <Route path="/" element={<WelcomePage />} />
-          {/* Route for To-Do List */}
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
-          {/* Route for Advice */}
           <Route path="/advice" element={<Advice />} />
-          {/* Route for Completed Tasks */}
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
