@@ -42,7 +42,7 @@ function TodoList({ tasks, setTasks }) {
       category: category,
       priority: 'low',
       isCompleted: false,
-      progress: 0,
+      progress: 0, // Initial progress set to 0
       timer: timer,
       dueDate: dueDate,
     };
@@ -61,6 +61,15 @@ function TodoList({ tasks, setTasks }) {
     setTasks(
       tasks.map((task) =>
         task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    );
+  };
+
+  // Function to handle progress change
+  const handleProgressChange = (taskId, value) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, progress: value } : task
       )
     );
   };
@@ -158,6 +167,14 @@ function TodoList({ tasks, setTasks }) {
                 <button className="complete-btn" onClick={() => toggleComplete(task.id)}>
                   <FiCheckCircle />
                 </button>
+                {/* Progress bar */}
+                <input
+                  type="range"
+                  value={task.progress}
+                  onChange={(e) => handleProgressChange(task.id, e.target.value)}
+                  min="0"
+                  max="100"
+                />
                 <button onClick={() => increasePriority(task.id)}>
                   <FiArrowUp />
                 </button>
@@ -254,4 +271,5 @@ function App() {
 }
 
 export default App;
+
 
