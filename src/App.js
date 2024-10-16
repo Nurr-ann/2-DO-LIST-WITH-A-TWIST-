@@ -26,13 +26,6 @@ function TodoList({ tasks, setTasks }) {
     if (storedTasks) setTasks(storedTasks);
   }, []);
 
-  const isTaskOverdue = (dueDate) => {
-    if (!dueDate) return false;
-    const today = new Date();
-    const taskDueDate = new Date(dueDate);
-    return taskDueDate.setHours(23, 59, 59, 999) < today;
-  };
-
   const addTask = () => {
     if (newTask.trim() === '') return;
     const task = {
@@ -237,17 +230,17 @@ function App() {
   return (
     <Router>
       <div className="app">
+        {/* Always render CircularMenu */}
+        <CircularMenu />
+        {/* Show WelcomePage first, and only show the rest of the app once user continues */}
         {showWelcome ? (
           <WelcomePage onContinue={handleContinue} />
         ) : (
-          <>
-            <CircularMenu />
-            <Routes>
-              <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
-              <Route path="/advice" element={<Advice />} />
-              <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
-            </Routes>
-          </>
+          <Routes>
+            <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+            <Route path="/advice" element={<Advice />} />
+            <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
+          </Routes>
         )}
       </div>
     </Router>

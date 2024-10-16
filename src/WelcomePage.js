@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WelcomePage.css'; 
 
-function WelcomePage() {
+function WelcomePage({ onContinue }) {
   const [name, setName] = useState('');
   const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ function WelcomePage() {
   };
 
   const goToTodoList = () => {
+    onContinue();  // Close the welcome page
     navigate('/');  // Navigate to the Todo List page
   };
 
