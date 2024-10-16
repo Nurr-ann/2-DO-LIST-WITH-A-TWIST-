@@ -250,7 +250,6 @@ function CircularMenu() {
   );
 }
 
-// Main App Component
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -259,11 +258,13 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Ensure WelcomePage only loads for the exact root URL */}
+          {/* Route for WelcomePage */}
           <Route path="/" element={<WelcomePage />} />
-          {/* Define paths for other components */}
+          {/* Route for To-Do List */}
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
+          {/* Route for Advice */}
           <Route path="/advice" element={<Advice />} />
+          {/* Route for Completed Tasks */}
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
         </Routes>
       </div>
