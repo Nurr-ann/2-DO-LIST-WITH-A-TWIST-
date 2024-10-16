@@ -145,6 +145,7 @@ function TodoList({ tasks, setTasks }) {
           filteredTasks.map((task) => (
             <div
               key={task.id}
+              // Apply only "overdue" or "completed" based on conditions
               className={`task-item ${task.isCompleted ? 'task-completed' : ''} ${isTaskOverdue(task.dueDate) ? 'overdue' : ''}`}
             >
               <div className="task-info">
@@ -271,5 +272,3 @@ function App() {
 }
 
 export default App;
-
-
