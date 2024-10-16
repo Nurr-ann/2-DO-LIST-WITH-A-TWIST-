@@ -15,7 +15,13 @@ function TodoList({ tasks, setTasks }) {
   const [category, setCategory] = useState('Work'); // State for category selection
   const [filter, setFilter] = useState('All'); // State for filtering tasks by category
   const [dueDate, setDueDate] = useState('');
-  return <div>To-Do List Component</div>;
+  return (
+    <div>
+      <h1>Your To-Do List</h1>
+      {/* Existing To-Do List logic goes here */}
+    </div>
+  );
+}
 
   const isTaskOverdue = (dueDate) => {
     if (!dueDate) return false;
