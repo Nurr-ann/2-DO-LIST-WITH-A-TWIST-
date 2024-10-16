@@ -258,8 +258,8 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Use exact path for root "/" to prevent interfering with other routes */}
-          <Route path="/" element={<Navigate to="/welcome" replace />} exact />
+          {/* Index route: Renders WelcomePage when visiting the root ("/") */}
+          <Route path="/" element={<WelcomePage />} />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
