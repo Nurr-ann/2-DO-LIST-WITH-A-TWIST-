@@ -7,7 +7,6 @@ import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
-
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState('');
@@ -259,8 +258,8 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Redirect root "/" to welcome page */}
-          <Route path="/" element={<Navigate to="/welcome" />} />
+          {/* Use exact path for root "/" to prevent interfering with other routes */}
+          <Route path="/" element={<Navigate to="/welcome" replace />} exact />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
