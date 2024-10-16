@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import WelcomePage from './WelcomePage'; 
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // No Navigate needed here
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
 import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-
+import WelcomePage from './WelcomePage'; 
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -15,13 +14,6 @@ function TodoList({ tasks, setTasks }) {
   const [category, setCategory] = useState('Work'); // State for category selection
   const [filter, setFilter] = useState('All'); // State for filtering tasks by category
   const [dueDate, setDueDate] = useState('');
-  return (
-    <div>
-      <h1>Your To-Do List</h1>
-      {/* Existing To-Do List logic goes here */}
-    </div>
-  );
-}
 
   const isTaskOverdue = (dueDate) => {
     if (!dueDate) return false;
@@ -238,7 +230,7 @@ function TodoList({ tasks, setTasks }) {
 </div>
     </div>
   );
-
+}
 // Circular Menu Component for Navigation
 function CircularMenu() {
   const [open, setOpen] = useState(false);
@@ -249,7 +241,7 @@ function CircularMenu() {
         <FiMenu size={40} />
       </button>
       <nav className={`menu-options ${open ? 'visible' : ''}`}>
-        <Link to="/welcome" className="menu-option">Welcome Page</Link>
+        <Link to="/" className="menu-option">Welcome Page</Link>
         <Link to="/todo" className="menu-option">To-Do List</Link>
         <Link to="/advice" className="menu-option">Advice</Link>
         <Link to="/completed" className="menu-option">Completed Tasks</Link>
@@ -258,6 +250,7 @@ function CircularMenu() {
   );
 }
 
+// Main App Component
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -266,9 +259,9 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-          {/* Render WelcomePage for "/" */}
+          {/* Ensure WelcomePage only loads for the exact root URL */}
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/welcome" element={<WelcomePage />} />
+          {/* Define paths for other components */}
           <Route path="/todo" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
           <Route path="/completed" element={<CompletedTasks tasks={tasks} />} />
