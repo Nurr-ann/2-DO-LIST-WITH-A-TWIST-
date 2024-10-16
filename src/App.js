@@ -238,7 +238,7 @@ function TodoList({ tasks, setTasks }) {
 </div>
     </div>
   );
-}
+
 // Circular Menu Component for Navigation
 function CircularMenu() {
   const [open, setOpen] = useState(false);
