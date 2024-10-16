@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import WelcomePage from './WelcomePage'; 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Advice from './Advice';
 import CompletedTasks from './CompletedTasks';
 import './App.css';
 import { FiPlusCircle, FiMenu, FiCheckCircle, FiTrash, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-
+import WelcomePage from './WelcomePage'; 
 
 // To-Do List component
 function TodoList({ tasks, setTasks }) {
@@ -261,7 +260,6 @@ function App() {
       <div className="app">
         <CircularMenu />
         <Routes>
-          <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/" element={<TodoList tasks={tasks} setTasks={setTasks} />} />
           <Route path="/advice" element={<Advice />} />
@@ -272,7 +270,5 @@ function App() {
     </Router>
   );
 }
-
-
 
 export default App;
