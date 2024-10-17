@@ -1,5 +1,3 @@
-/* App.css */
-
 /* General body styling */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -36,6 +34,11 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.task-item:hover {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Hover shadow */
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
 /* Priority Circle beside task */
 .priority-circle {
   display: inline-block;
@@ -61,29 +64,19 @@ body {
 .sort-btn {
   background-color: #3498db;
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  border: 1px solid #3498db;
   cursor: pointer;
-  margin-bottom: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sort-btn:hover {
-  background-color: #2980b9;
-}
-/* Sort Button */
-.sort-btn {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.sort-btn:hover {
-  background-color: #2980b9;
+  background-color: #00f2fe;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Task controls */
@@ -106,6 +99,16 @@ body {
   transform: scale(1.1);
 }
 
+.complete-btn {
+  color: #2ecc71;
+  font-size: 24px;
+}
+
+.delete-btn {
+  color: #e74c3c;
+}
+
+/* Progress bar */
 .task-progress-bar {
   height: 8px;
   width: 100%;
@@ -117,29 +120,19 @@ body {
 
 .task-progress-bar-inner {
   height: 100%;
-  width: 0;
   background-color: #3498db;
   border-radius: 10px;
-  transition: width 0.4s ease;
+  transition: width 0.4s ease-in-out; /* Smooth progress change */
 }
 
-/* Animation when task is progressing */
+/* Animated progress bar */
 .task-progress-bar-inner.animated {
-  animation: progressBarAnimation 3s forwards;
+  animation: progressBarAnimation 1.5s ease-in-out forwards;
 }
 
 @keyframes progressBarAnimation {
   from { width: 0; }
   to { width: 100%; }
-}
-
-.complete-btn {
-  color: #2ecc71;
-  font-size: 24px;
-}
-
-.delete-btn {
-  color: #e74c3c;
 }
 
 /* Task completion animation */
@@ -162,63 +155,67 @@ body {
   }
 }
 
-.task-input {
+/* Input fields styling */
+.task-input, .timer-input, .category-dropdown, .date-picker {
+  border: 2px solid #3498db;
   padding: 10px;
-  font-size: 16px;
-  width: 100%;
-  max-width: 400px;
   border-radius: 25px;
-  border: 1px solid #3498db;
+  transition: all 0.3s ease;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-size: 1rem;
   outline: none;
-  margin-bottom: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.task-options {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-/* Add task section */
-.add-task-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 20px;
-  margin-top: 20px;
-  border: 2px solid #3498db; /* Border for the Add Task section */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-/* Task input field */
-.add-task-section input[type="text"] {
-  border: #34495e ;
-  outline: none;
-  background-color: transparent;
-  width: 100%;
+/* Timer input */
+.timer-input {
   padding: 10px;
-  font-size: 18px;
-}
-
-/* Timer input field */
-.add-task-section input[type="number"] {
-  border: none;
-  background-color: #fff;
-  padding: 10px;
-  width: 100px;
-  margin-left: 10px;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
+  width: 150px;
+  border-radius: 25px;
+  border: 2px solid #3498db;
+  background-color: white;
+  text-align: center;
   color: #34495e;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   outline: none;
+}
+
+.timer-input:focus {
+  border-color: #00bfff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on focus */
+}
+
+.timer-input:hover {
+  border-color: #2980b9;
+}
+
+/* Category Dropdown */
+.category-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 25px;
+  border: 2px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.category-dropdown:hover {
+  border-color: #2980b9; /* Change border color on hover */
+}
+
+.category-dropdown:focus {
+  border-color: #00bfff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on focus */
+}
+
+.category-dropdown:active {
+  transform: scale(0.98); /* Slight shrink on click */
 }
 
 /* Add task button */
@@ -230,17 +227,20 @@ body {
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   margin-top: 15px; /* Add spacing above the button */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .add-task-btn:hover {
   background-color: #00bfff;
   transform: scale(1.1);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Prominent shadow */
 }
 
 .add-task-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.95); /* Shrink on click */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Circular Menu */
@@ -259,11 +259,17 @@ body {
   padding: 20px;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .menu-btn:hover {
   background-color: #0056b3;
+  transform: scale(1.1); /* Slightly increase size on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+}
+
+.menu-btn:active {
+  transform: scale(0.95); /* Slight shrink on click */
 }
 
 .menu-options {
@@ -340,15 +346,16 @@ body {
   width: 100%;
 }
 
-
 .completed-task-list a:hover {
   text-decoration: underline;
 }
+
+/* Category Tag */
 .category-tag {
   display: inline-block;
   padding: 5px 10px;
   font-size: 12px;
-  color: rgb(25, 90, 188);
+  color: white;
   border-radius: 12px;
   margin-right: 10px;
 }
@@ -364,38 +371,6 @@ body {
 .category-tag.urgent {
   background-color: #e74c3c; /* Red for Urgent */
 }
-
-.category-dropdown {
-  padding: 10px;
-  font-size: 16px;
-  width: 50%;
-  border-radius: 25px;
-  border: 1px solid #3498db;
-  outline: none;
-  box-shadow: 0px 4px 8px rgba(4, 94, 190, 0.1);
-  cursor: pointer;
-}
-
-/* Sort Button */
-/* Sort Button */
-.sort-btn {
-  background-color: #3498db;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  border: 1px solid #3498db;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.sort-btn:hover {
-  background-color: #00f2fe;
-  transform: scale(1.05);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-}
-
 
 /* Filter Dropdown */
 .filter-section {
@@ -425,7 +400,7 @@ body {
 }
 
 .filter-section select:hover {
-  border: 1px solid #2980b9;
+  border-color: #2980b9;
 }
 
 /* Due Date styling for task item */
@@ -461,25 +436,63 @@ body {
   background-color: #ffebee;
   border-left: 5px solid #e74c3c; /* Red border for overdue */
 }
+
+/* Timer input */
 .timer-category-wrapper {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
 }
 
-.timer-input, .category-dropdown {
-  border: 2px solid #3498db;
+.timer-input {
   padding: 10px;
-  border-radius: 25px;
   font-size: 1rem;
+  width: 150px;
+  border-radius: 25px;
+  border: 2px solid #3498db;
+  background-color: white;
+  text-align: center;
+  color: #34495e;
   transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  outline: none;
 }
 
-.timer-input:hover, .category-dropdown:hover {
-  border-color: #00bfff; /* Change color on hover */
+.timer-input:focus {
+  border-color: #00bfff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on focus */
 }
 
-.timer-input:focus, .category-dropdown:focus {
-  border-color: #00f2fe;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Add focus shadow */
+.timer-input:hover {
+  border-color: #2980b9;
+}
+
+.category-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 25px;
+  border: 2px solid #3498db;
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.category-dropdown:hover {
+  border-color: #2980b9; /* Change border color on hover */
+}
+
+.category-dropdown:focus {
+  border-color: #00bfff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on focus */
+}
+
+.category-dropdown:active {
+  transform: scale(0.98); /* Slight shrink on click */
 }
