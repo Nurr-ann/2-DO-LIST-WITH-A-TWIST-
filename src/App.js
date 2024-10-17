@@ -32,7 +32,7 @@ function TodoList({ tasks, setTasks }) {
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks'));
     if (storedTasks) setTasks(storedTasks);
-  }, [setTasks]); 
+  }, []);
   
 
   const addTask = () => {
